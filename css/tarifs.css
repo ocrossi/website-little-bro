@@ -1,0 +1,78 @@
+/* Tarifs Section */
+.tarifs {
+    background-color: white;
+    padding: 80px 0;
+}
+
+.tarifs-intro {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.tarifs-intro p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.tarifs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.tarif-card {
+    background-color: #f5f5f0;
+    border-radius: 8px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.tarif-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+
+.tarif-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.tarif-price {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin: 20px 0;
+    font-family: var(--font-title);
+}
+
+.tarif-price small {
+    font-size: 0.6em;
+    color: var(--text-color);
+    display: block;
+    font-weight: 400;
+}
+
+.tarif-description {
+    margin: 30px 0;
+}
+
+.tarif-description p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.tarif-button {
+    margin-top: 30px;
+}
+
+.tarif-button a {
+    display: inline-block;
+}
