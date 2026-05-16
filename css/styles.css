@@ -98,7 +98,7 @@ img {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 .header .container {
@@ -107,23 +107,19 @@ img {
     align-items: center;
 }
 
-.logo {
-    height: 60px;
-}
-
-.nav {
+.logo-link {
     display: flex;
-    gap: 20px;
-}
-
-.nav a {
-    color: var(--text-color);
-    font-weight: 500;
+    align-items: center;
     transition: var(--transition);
 }
 
-.nav a:hover {
-    color: var(--primary-color);
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
 }
 
 section {
