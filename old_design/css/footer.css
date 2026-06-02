@@ -1,0 +1,124 @@
+/* ═══════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════ */
+
+.footer {
+  background: var(--clr-secondary);
+  color: #c8d8c8;
+}
+
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 24px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  gap: 48px;
+}
+
+.footer__logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 14px;
+  filter: brightness(0) invert(1) opacity(0.85);
+}
+
+.footer__col p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.footer__address {
+  font-size: 0.8rem;
+  opacity: 0.65;
+  margin-top: 8px;
+}
+
+.footer__col h4 {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clr-primary);
+  margin-bottom: 18px;
+}
+
+.footer__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__col ul li a {
+  font-size: 0.875rem;
+  opacity: 0.75;
+  transition: opacity var(--transition), color var(--transition);
+}
+
+.footer__col ul li a:hover {
+  opacity: 1;
+  color: var(--clr-primary);
+}
+
+.footer__col--contact a {
+  font-size: 0.875rem;
+  opacity: 0.75;
+  transition: opacity var(--transition), color var(--transition);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.footer__col--contact a:hover {
+  opacity: 1;
+  color: var(--clr-primary);
+}
+
+/* ── Social links */
+.footer__socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #c8d8c8;
+  opacity: 0.75;
+  transition: opacity var(--transition), color var(--transition), transform var(--transition);
+}
+
+.footer__social-link:hover {
+  opacity: 1;
+  color: var(--clr-primary);
+  transform: translateY(-2px);
+}
+
+.footer__social-link svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* ── Bottom bar */
+.footer__bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  padding: 20px 24px;
+}
+
+.footer__bottom p {
+  font-size: 0.78rem;
+  opacity: 0.5;
+  letter-spacing: 0.04em;
+}
+

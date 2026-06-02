@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "rdv": "Prendre RDV",
+{
+  "nav": {
+    "rdv": "Prendre RDV",
+    "accueil": "Accueil",
+    "prestations": "Prestations",
+    "avantApres": "Avant / Après",
+    "contact": "Contact",
+    "equipe": "Équipe"
+  },
+  "hero": {
+    "quote": "« Le plus beau résultat en médecine esthétique est celui que l'on remarque sans pouvoir l'expliquer »"
+  },
+  "prestations": {
+    "title": "Nos Prestations",
+    "savoir": "En savoir plus",
+    "diag": {
+      "title": "Diagnostique de Peau",
+      "machine": "Machine : Aura",
+      "desc": "Analyse précise de votre peau grâce à la technologie Aura pour un bilan cutané complet et personnalisé."
+    },
+    "laser": {
+      "title": "Laser CO₂",
+      "machine": "Machine : UltraPulse Alpha",
+      "desc": "Traitement laser ablatif de référence pour le renouvellement cutané, la réduction des rides et le resurfaçage."
+    },
+    "ipl": {
+      "title": "IPL",
+      "machine": "Machine : Stellar M22",
+      "desc": "Lumière pulsée intense pour traiter les taches pigmentaires, les rougeurs et le vieillissement cutané."
+    },
+    "rf": {
+      "title": "Radiofréquence Micro-Needling",
+      "machine": "Équipement : VirtueRF",
+      "desc": "Combinaison de micro-aiguilles et radiofréquence pour raffermir la peau, réduire les pores et stimuler le collagène."
+    },
+    "inject": {
+      "title": "Injections",
+      "machine": "Technique : Acide Hyaluronique Vivacy",
+      "desc": "Injections d'acide hyaluronique et de botox pour restaurer les volumes, lisser les rides et sublimer les traits du visage."
+    }
+  },
+  "avantApres": {
+    "title": "Avant / Après",
+    "before": "Avant",
+    "after": "Après",
+    "slides": [
+      { "quote": "« Résultat naturel et bluffant, je me sens enfin bien dans ma peau. »", "name": "— Marie L." },
+      { "quote": "« Une transformation subtile mais tellement visible. Merci à toute l'équipe ! »", "name": "— Sophie M." },
+      { "quote": "« Je recommande vivement, des professionnels à l'écoute et très compétents. »", "name": "— Claire D." },
+      { "quote": "« Résultat au-delà de mes attentes, vraiment impressionnant. »", "name": "— Isabelle R." }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "services": "Service(s) souhaité(s)",
+      "message": "Message",
+      "submit": "Envoyer",
+      "success": "Votre message a bien été envoyé. Nous vous répondrons rapidement.",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    }
+  },
+  "equipe": {
+    "title": "Notre Équipe",
+    "nicolas": {
+      "name": "Dr Nicolas Rossi",
+      "role": "Médecin Généraliste",
+      "bio": "Passionné par la médecine esthétique et le bien-être de ses patients, le Dr Rossi allie expertise médicale et approche personnalisée pour des résultats naturels et durables.",
+      "quote": "« La beauté la plus authentique est celle qui révèle qui vous êtes vraiment. »"
+    },
+    "laura": {
+      "name": "Laura Rossi",
+      "role": "Infirmière Libérale",
+      "bio": "Avec sa douceur et son professionnalisme, Laura accompagne chaque patient tout au long de son parcours de soins, garantissant confort et sécurité à chaque étape.",
+      "quote": "« Prendre soin des autres est une vocation autant qu'une passion. »"
+    }
+  },
+  "footer": {
+    "tagline": "Médecine esthétique à Perpignan",
+    "nav": "Navigation",
+    "contactTitle": "Nous contacter",
+    "copyright": "© 2026 Carlit Laser Medical — Tous droits réservés"
+  }
+}
+
