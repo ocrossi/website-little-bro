@@ -1,2238 +1,699 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlit Laser Medical — Cabinet de Médecine Esthétique à Perpignan</title>
-    
-    <!-- Premium Fonts: Playfair Display for headings & Inter for body text -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons for clean SVG presentation -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- ========================================== -->
-    <!--            SPLIT CSS EMULATION             -->
-    <!-- ========================================== -->
-
-    <!-- [css/base.css] -->
-    <style>
-        :root {
-            /* Design Color Tokens */
-            --color-terracotta: #BD8C69;
-            --color-text: #3C454A;
-            --color-forest: #123A12;
-            --color-cream: #F9F7FD;
-            --color-white: #FFFFFF;
-            --color-doctolib: #007bfb;G
-            --color-gray-light: #EFEBF4;
-            --color-gray-medium: #8C969C;
-
-            /* Typography */
-            --font-serif: 'Playfair Display', Georgia, serif;
-            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-            
-            /* Transitions */
-            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow-subtle: 0 4px 20px rgba(60, 69, 74, 0.05);
-            --shadow-md: 0 10px 30px rgba(60, 69, 74, 0.1);
-        }
-
-        /* CSS Reset */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 130px; /* Accounts for sticky navbar height */
-        }
-
-        body {
-            font-family: var(--font-sans);
-            color: var(--color-text);
-            background-color: var(--color-white);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-serif);
-            color: var(--color-forest);
-            font-weight: 600;
-        }
-
-        p {
-            font-weight: 300;
-            font-size: 1.05rem;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition-smooth);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        button, input, select, textarea {
-            font-family: inherit;
-            outline: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Utility classes */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header.section-header-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: min(100%, 860px);
-            padding: 2rem 2.5rem;
-            margin: 0 auto 3rem;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(189, 140, 105, 0.18);
-            box-shadow: var(--shadow-md);
-            text-align: center;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background-color: var(--color-terracotta);
-        }
-
-        .section-header p {
-            font-style: italic;
-            color: var(--color-gray-medium);
-            margin-top: 0.5rem;
-        }
-
-        .section-divider {
-            height: 1px;
-            background-color: var(--color-gray-light);
-            border: none;
-        }
-    </style>
-
-    <!-- [css/navbar.css] -->
-    <style>
-        .header-sticky {
-            position: sticky;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-subtle);
-            border-bottom: 2px solid var(--color-forest);
-            transition: var(--transition-smooth);
-        }
-
-        /* Top Bar of Nav */
-        .nav-upper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid var(--color-gray-light);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo-container {
-            position: absolute;
-            left: 2rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-img {
-            height: 52px;
-            object-fit: contain;
-        }
-
-        .btn-rdv {
-            background-color: var(--color-doctolib);
-            color: var(--color-white);
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.75rem 1.75rem;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(0, 123, 251, 0.3);
-            transition: var(--transition-smooth);
-        }
-
-        .btn-rdv:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 123, 251, 0.4);
-            filter: brightness(1.05);
-        }
-
-        .lang-selector {
-            position: absolute;
-            right: 6rem;
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .flag-btn {
-            background: none;
-            border: 2px solid transparent;
-            cursor: pointer;
-            border-radius: 4px;
-            padding: 2px;
-            transition: var(--transition-smooth);
-            display: flex;
-            align-items: center;
-            opacity: 0.6;
-        }
-
-        .flag-btn:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .flag-btn.active {
-            opacity: 1;
-            border-color: var(--color-terracotta);
-        }
-
-        .flag-icon {
-            width: 24px;
-            height: 16px;
-            object-fit: cover;
-            border-radius: 2px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-        }
-
-        /* Lower Bar of Nav (Menu Items) */
-        .nav-lower {
-            padding: 0.75rem 2rem;
-            display: flex;
-            justify-content: center;
-        }
-
-        .menu-items {
-            display: flex;
-            gap: 3rem;
-        }
-
-        .menu-link {
-            font-size: 0.95rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-text);
-            position: relative;
-            padding: 0.25rem 0;
-        }
-
-        .menu-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-terracotta);
-            transition: var(--transition-smooth);
-        }
-
-        .menu-link:hover {
-            color: var(--color-terracotta);
-        }
-
-        .menu-link:hover::after, 
-        .menu-link.active::after {
-            width: 100%;
-        }
-
-        /* Mobile Menu Toggle button */
-        .mobile-toggle {
-            display: none;
-            position: absolute;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--color-text);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-    </style>
-
-    <!-- [css/sections.css] -->
-    <style>
-        section {
-            padding: 6rem 0;
-        }
-
-        /* Alternating backgrounds */
-        .bg-cream {
-            background-color: var(--color-cream);
-        }
-
-        .bg-white {
-            background-color: var(--color-white);
-        }
-
-        /* Section 1: Accueil (Swapped to image 2 and removed green overlay) */
-        #accueil {
-            position: relative;
-            height: 85vh;
-            min-height: 550px;
-            padding: 0;
-            background-color: var(--color-cream);
-            background-image: url('assets/hero_background.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-
-        /* Frosted Glass Overlay Card to preserve natural image background with maximum luxury contrast */
-        .accueil-overlay-container {
-            width: 100%;
-            max-width: 900px;
-            padding: 2.5rem 3rem;
-            text-align: center;
-            margin-bottom: 8vh;
-            background: rgba(255, 255, 255, 0.82);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            border: 1px solid rgba(189, 140, 105, 0.3);
-            box-shadow: var(--shadow-md);
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .accueil-quote {
-            font-family: var(--font-serif);
-            color: var(--color-forest);
-            font-size: 2.1rem;
-            line-height: 1.45;
-            font-style: italic;
-            font-weight: 400;
-        }
-
-        /* Section 2: Prestations */
-        .prestations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .prestation-card {
-            background-color: var(--color-white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-subtle);
-            border: 1px solid var(--color-gray-light);
-            transition: var(--transition-smooth);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .prestation-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--color-terracotta);
-        }
-
-        .prestation-image-wrapper {
-            position: relative;
-            height: 220px;
-            background-color: #EFEBF4;
-            overflow: hidden;
-        }
-
-        .prestation-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition-smooth);
-        }
-
-        .prestation-card:hover .prestation-img {
-            transform: scale(1.06);
-        }
-
-        .prestation-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: var(--color-forest);
-            color: var(--color-white);
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 0.35rem 0.85rem;
-            border-radius: 50px;
-            letter-spacing: 0.05em;
-        }
-
-        .prestation-content {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .prestation-title {
-            font-size: 1.35rem;
-            margin-bottom: 0.5rem;
-            color: var(--color-forest);
-        }
-
-        .prestation-equipment {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--color-terracotta);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 1rem;
-        }
-
-        .prestation-desc {
-            font-size: 0.95rem;
-            color: var(--color-text);
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .prestation-link {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--color-forest);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            margin-top: auto;
-            border-bottom: 1px solid transparent;
-            align-self: flex-start;
-        }
-
-        .prestation-link:hover {
-            color: var(--color-terracotta);
-            border-bottom-color: var(--color-terracotta);
-        }
-
-        /* Section 3: Avant/Apres (Carousel) */
-        .carousel-wrapper {
-            position: relative;
-            max-width: 950px;
-            margin: 0 auto;
-            overflow: visible;
-            padding: 2rem 0;
-        }
-
-        .carousel-track-container {
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            padding: 0 1rem;
-            box-sizing: border-box;
-        }
-
-        .carousel-card {
-            background-color: var(--color-white);
-            border-radius: 16px;
-            box-shadow: var(--shadow-subtle);
-            overflow: hidden;
-            border: 1px solid var(--color-gray-light);
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-        }
-
-        .comparison-container {
-            display: flex;
-            height: 380px;
-            background-color: var(--color-gray-light);
-            position: relative;
-        }
-
-        .comparison-half {
-            width: 50%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .comparison-half img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .comparison-label {
-            position: absolute;
-            bottom: 1rem;
-            background-color: rgba(18, 58, 18, 0.85);
-            color: var(--color-white);
-            font-size: 0.75rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .comparison-left .comparison-label { left: 1rem; }
-        .comparison-right .comparison-label { right: 1rem; }
-
-        .comparison-divider {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--color-white);
-            z-index: 10;
-        }
-
-        .carousel-testimonial {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: var(--color-cream);
-        }
-
-        .quote-icon {
-            color: var(--color-terracotta);
-            opacity: 0.3;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-text {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 1.25rem;
-            color: var(--color-forest);
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--color-text);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .testimonial-author::before {
-            content: '';
-            width: 20px;
-            height: 1px;
-            background-color: var(--color-terracotta);
-        }
-
-        /* Carousel Navigation Buttons */
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: var(--color-white);
-            border: 1px solid var(--color-gray-light);
-            color: var(--color-forest);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-subtle);
-            z-index: 20;
-            transition: var(--transition-smooth);
-        }
-
-        .carousel-btn:hover {
-            background-color: var(--color-forest);
-            color: var(--color-white);
-            border-color: var(--color-forest);
-        }
-
-        .carousel-btn-prev { left: -25px; }
-        .carousel-btn-next { right: -25px; }
-
-        /* Carousel indicators */
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-        }
-
-        .indicator-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--color-gray-medium);
-            opacity: 0.3;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition-smooth);
-        }
-
-        .indicator-dot.active {
-            opacity: 1;
-            background-color: var(--color-terracotta);
-            transform: scale(1.2);
-        }
-
-
-        /* Section 4: Contact (Configured with photo-cab.png building parallax) */
-        #contact {
-            position: relative;
-            background-image: url('assets/photo-cab.png');
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            padding: 6rem 0;
-            z-index: 1;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 4rem;
-            align-items: stretch;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-form-container {
-            background-color: var(--color-white);
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(189, 140, 105, 0.15);
-        }
-
-        .contact-form-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--color-forest);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            color: var(--color-text);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            border: 1px solid var(--color-gray-light);
-            border-radius: 8px;
-            font-size: 0.95rem;
-            color: var(--color-text);
-            background-color: var(--color-cream);
-            transition: var(--transition-smooth);
-        }
-
-        .form-control:focus {
-            border-color: var(--color-terracotta);
-            background-color: var(--color-white);
-            box-shadow: 0 0 0 3px rgba(189, 140, 105, 0.15);
-        }
-
-        /* Checkbox grid for services */
-        .checkbox-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
-        }
-
-        .checkbox-custom-label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border: 1px solid var(--color-gray-light);
-            border-radius: 6px;
-            background-color: var(--color-cream);
-            transition: var(--transition-smooth);
-        }
-
-        .checkbox-custom-label:hover {
-            border-color: var(--color-terracotta);
-        }
-
-        .checkbox-custom-label input {
-            accent-color: var(--color-terracotta);
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Submit Button */
-        .btn-submit {
-            background-color: var(--color-terracotta);
-            color: var(--color-white);
-            font-weight: 600;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            width: 100%;
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(189, 140, 105, 0.2);
-        }
-
-        .btn-submit:hover {
-            background-color: var(--color-forest);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(18, 58, 18, 0.3);
-        }
-
-        .contact-info-column {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .contact-map-wrapper {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-subtle);
-            border: 1px solid var(--color-gray-light);
-            height: 320px;
-            margin-bottom: 2rem;
-        }
-
-        .contact-details-box {
-            background-color: var(--color-white);
-            border-radius: 16px;
-            padding: 2.5rem;
-            border: 1px solid rgba(189, 140, 105, 0.15);
-            box-shadow: var(--shadow-subtle);
-        }
-
-        .contact-detail-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-detail-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .contact-icon-wrapper {
-            background-color: var(--color-cream);
-            color: var(--color-terracotta);
-            padding: 0.65rem;
-            border-radius: 50%;
-            box-shadow: var(--shadow-subtle);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-detail-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--color-forest);
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-detail-text {
-            font-size: 0.95rem;
-            color: var(--color-text);
-        }
-
-        /* Success Message Alert overlay */
-        .toast-notification {
-            position: fixed;
-            bottom: 2rem;
-            right: -400px;
-            background-color: var(--color-forest);
-            color: var(--color-white);
-            padding: 1.25rem 2rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-md);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .toast-notification.show {
-            right: 2rem;
-        }
-
-
-        /* Section 5: Equipe */
-        .equipe-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .equipe-card {
-            background-color: var(--color-white);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-subtle);
-            border: 1px solid var(--color-gray-light);
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition-smooth);
-        }
-
-        .equipe-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--color-terracotta);
-        }
-
-        .equipe-img-wrapper {
-            height: 380px;
-            overflow: hidden;
-            background-color: var(--color-gray-light);
-            position: relative;
-        }
-
-        .equipe-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition-smooth);
-        }
-
-        .equipe-card:hover .equipe-img {
-            transform: scale(1.04);
-        }
-
-        .equipe-role-badge {
-            position: absolute;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            background-color: var(--color-terracotta);
-            color: var(--color-white);
-            padding: 0.5rem 1.25rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-        }
-
-        .equipe-body {
-            padding: 2.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .equipe-name {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: var(--color-forest);
-        }
-
-        .equipe-degree {
-            font-size: 0.9rem;
-            color: var(--color-gray-medium);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .equipe-bio {
-            font-size: 1rem;
-            color: var(--color-text);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .equipe-quote {
-            font-family: var(--font-serif);
-            font-style: italic;
-            border-left: 3px solid var(--color-terracotta);
-            padding-left: 1rem;
-            color: var(--color-forest);
-            font-size: 1.05rem;
-            margin-top: auto;
-        }
-
-        /* Dynamic keyframes */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-
-    <!-- [css/footer.css] -->
-    <style>
-        .site-footer {
-            background-color: #2b2b2b;
-            color: var(--color-white);
-            padding: 5rem 0 2rem 0;
-            border-top: 4px solid var(--color-terracotta);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-
-        .footer-brand h3 {
-            color: var(--color-white);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            max-width: 320px;
-        }
-
-        .footer-social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-circle-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--color-white);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition-smooth);
-        }
-
-        .social-circle-btn:hover {
-            background-color: var(--color-terracotta);
-            transform: translateY(-3px);
-        }
-
-        .footer-links-title {
-            color: var(--color-terracotta);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1.5rem;
-            font-family: var(--font-sans);
-            font-weight: 600;
-        }
-
-        .footer-links-list li {
-            margin-bottom: 0.85rem;
-        }
-
-        .footer-links-list a {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-        }
-
-        .footer-links-list a:hover {
-            color: var(--color-terracotta);
-            padding-left: 4px;
-        }
-
-        .footer-contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-        }
-
-        .footer-contact-item a:hover {
-            color: var(--color-terracotta);
-        }
-
-        .footer-contact-icon {
-            color: var(--color-terracotta);
-            flex-shrink: 0;
-            margin-top: 0.15rem;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .footer-copyright {
-            letter-spacing: 0.02em;
-        }
-
-        .footer-bottom-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-bottom-links a:hover {
-            color: var(--color-white);
-        }
-    </style>
-
-    <!-- [css/responsive.css] -->
-    <style>
-        @media (max-width: 1024px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .carousel-card {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-container {
-                height: 300px;
-            }
-
-            .carousel-testimonial {
-                padding: 2rem;
-            }
-
-            /* Disable fixed parallax on touch screens for optimized rendering performance */
-            #contact {
-                background-attachment: scroll;
-            }
-        }
-
-        @media (max-width: 768px) {
-            /* Structural tweaks */
-            section {
-                padding: 4rem 0;
-            }
-
-            .section-header {
-                margin-bottom: 2.5rem;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            /* Responsive Menu */
-            .mobile-toggle {
-                display: block;
-            }
-
-            .nav-upper {
-                padding: 0.75rem 1.5rem;
-            }
-
-            .logo-img {
-                height: 40px;
-            }
-
-            .btn-rdv {
-                padding: 0.6rem 1.25rem;
-                font-size: 0.85rem;
-            }
-
-            .nav-lower {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--color-white);
-                border-bottom: 1px solid var(--color-gray-light);
-                max-height: 0;
-                overflow: hidden;
-                padding: 0;
-                transition: max-height 0.3s ease-out;
-                box-shadow: var(--shadow-md);
-            }
-
-            .nav-lower.open {
-                max-height: 350px;
-                padding: 1.5rem 2rem;
-            }
-
-            .menu-items {
-                flex-direction: column;
-                gap: 1.25rem;
-                align-items: center;
-                width: 100%;
-            }
-
-            .menu-link {
-                width: 100%;
-                text-align: center;
-                display: block;
-                padding: 0.5rem 0;
-            }
-
-            /* Welcome Quote resizing */
-            .accueil-quote {
-                font-size: 1.45rem;
-            }
-
-            .accueil-overlay-container {
-                padding: 1.5rem 2rem;
-                margin-bottom: 6vh;
-            }
-
-            /* Prestations, team and footer grids */
-            .prestations-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .checkbox-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .equipe-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .equipe-img-wrapper {
-                height: 320px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .carousel-btn-prev { left: -10px; }
-            .carousel-btn-next { right: -10px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Carlit Laser Medical — Médecine Esthétique Perpignan</title>
+  <meta name="description" content="Cabinet de médecine esthétique à Perpignan. Laser CO₂, IPL Stellar M22, VirtueRF, injections acide hyaluronique. Dr Nicolas Rossi. Prenez RDV sur Doctolib.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#733803">
+
+  <!-- Favicons Placeholders -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚕️</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚕️</text></svg>">
+
+  <link rel="canonical" href="https://carlitlasermedical.fr/">
+  <link rel="alternate" hreflang="fr" href="https://carlitlasermedical.fr/fr/">
+  <link rel="alternate" hreflang="en" href="https://carlitlasermedical.fr/en/">
+  <link rel="alternate" hreflang="es" href="https://carlitlasermedical.fr/es/">
+  <link rel="alternate" hreflang="x-default" href="https://carlitlasermedical.fr/">
+
+  <meta property="og:title" content="Carlit Laser Medical — Médecine Esthétique Perpignan">
+  <meta property="og:description" content="Cabinet de médecine esthétique à Perpignan. Laser CO₂, IPL, VirtueRF, injections.">
+  <meta property="og:image" content="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22630%22 viewBox=%220 0 1200 630%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23FAF8F4%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2264%22 fill=%22%23733803%22>Carlit Laser Medical</text></svg>">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Site styles (extracted to css/styles.css) -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <!-- Sticky Navigation Bar (Emulates elements from Upper and Lower navbar requests) -->
-    <header class="header-sticky">
-        <!-- 1st Part: Upper Part -->
-        <div class="nav-upper">
-            <a href="#accueil" class="logo-container scroll-trigger" aria-label="Accueil">
-                <!-- Fallback embedded SVG logo in case PNG is missing on load -->
-                <img src="assets/logo.png" alt="Carlit Laser Medical Logo" class="logo-img" onerror="this.outerHTML='<div style=\'font-family:var(--font-serif); font-size:1.6rem; color:var(--color-forest); font-weight:700; letter-spacing:0.05em; display:flex; align-items:center; gap:0.5rem;\'><span style=\'color:var(--color-terracotta); font-style:italic;\'>Carlit</span> Laser</div>'">
-            </a>
+  <!-- Accessible Skip To Content -->
+  <a href="#accueil" class="skip-to-content" data-i18n="nav.skip_link">Aller au contenu</a>
 
-            <!-- Blue doctolib-styled Action Button -->
-            <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener noreferrer" class="btn-rdv" data-translate="btn_rdv">
-                <i data-lucide="calendar"></i> Prendre RDV
-            </a>
+  <!-- MEDICAL DISCLAIMER STRIP -->
+  <div id="disclaimer" class="disclaimer-bar" role="complementary">
+    <span data-i18n="global.disclaimer">⚕️ Ce site est informatif et ne remplace pas une consultation médicale.</span>
+    <button class="disclaimer-close" id="disclaimer-close" aria-label="Fermer le bandeau d'information">&times;</button>
+  </div>
 
-            <!-- Flags Translation selectors -->
-            <div class="lang-selector">
-                <button onclick="setLanguage('fr')" class="flag-btn active" id="flag-fr" title="Français">
-                    <img src="https://flagcdn.com/w40/fr.png" alt="French" class="flag-icon">
-                </button>
-                <button onclick="setLanguage('en')" class="flag-btn" id="flag-en" title="English">
-                    <img src="https://flagcdn.com/w40/gb.png" alt="English" class="flag-icon">
-                </button>
-                <button onclick="setLanguage('es')" class="flag-btn" id="flag-es" title="Español">
-                    <img src="https://flagcdn.com/w40/es.png" alt="Spanish" class="flag-icon">
-                </button>
-            </div>
+  <!-- STICKY HEADER -->
+  <header class="header-wrapper" id="navbar">
+    <div class="navbar-container">
 
-            <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
-                <i data-lucide="menu" id="menu-icon"></i>
-            </button>
+      <!-- DESKTOP NAVBAR UPPER ROW -->
+      <div class="nav-desktop-upper">
+        <a href="#accueil" class="logo-link" aria-label="Carlit Laser Medical Accueil">
+          <svg viewBox="0 0 350 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(2, 4)">
+              <circle cx="20" cy="20" r="18" stroke="#FAF8F4" stroke-width="1.25" />
+              <text x="20" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="400" fill="#FAF8F4" text-anchor="middle">C</text>
+              <circle cx="28" cy="12" r="1.5" fill="#BD8C69" />
+            </g>
+            <text x="52" y="29" font-family="'Cormorant Garamond', Georgia, serif" font-weight="600" font-size="22" fill="#FAF8F4" letter-spacing="4">CARLIT</text>
+            <line x1="164" y1="14" x2="164" y2="30" stroke="#BD8C69" stroke-width="1" />
+            <text x="178" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="400" font-size="16" fill="#FAF8F4" letter-spacing="1">Laser Médical</text>
+          </svg>
+        </a>
+        <div class="nav-actions">
+          <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="btn btn-blue" data-i18n="nav.rdv_btn">Prendre RDV</a>
+          <div class="lang-switcher" role="navigation" aria-label="Langues">
+            <button class="btn-lang active" data-lang="fr" aria-label="Français">FR</button>
+            <button class="btn-lang" data-lang="en" aria-label="English">EN</button>
+            <button class="btn-lang" data-lang="es" aria-label="Español">ES</button>
+          </div>
         </div>
+      </div>
 
-        <!-- 2nd Part: Lower Part -->
-        <nav class="nav-lower" id="nav-menu">
-            <ul class="menu-items">
-                <li><a href="#accueil" class="menu-link active scroll-trigger" data-translate="nav_accueil">Accueil</a></li>
-                <li><a href="#prestations" class="menu-link scroll-trigger" data-translate="nav_prestations">Prestations</a></li>
-                <li><a href="#avant-apres" class="menu-link scroll-trigger" data-translate="nav_avant_apres">Avant / Après</a></li>
-                <li><a href="#contact" class="menu-link scroll-trigger" data-translate="nav_contact">Contact</a></li>
-                <li><a href="#equipe" class="menu-link scroll-trigger" data-translate="nav_equipe">Équipe</a></li>
-            </ul>
-        </nav>
-    </header>
+      <!-- DESKTOP NAVBAR LOWER ROW -->
+      <nav class="nav-desktop-lower" aria-label="Navigation principale">
+        <ul class="nav-menu-links">
+          <li><a href="#accueil" class="active" data-i18n="nav.links.accueil">Accueil</a></li>
+          <li><a href="#prestations" data-i18n="nav.links.prestations">Prestations</a></li>
+          <li><a href="#avant-apres" data-i18n="nav.links.avant_apres">Avant / Après</a></li>
+          <li><a href="#equipe" data-i18n="nav.links.equipe">Notre Équipe</a></li>
+          <li><a href="#contact" data-i18n="nav.links.contact">Nous Contacter</a></li>
+        </ul>
+      </nav>
 
-
-    <!-- Section 1: Accueil (Swapped to hero_background.jpg without green tint overlay) -->
-    <section id="accueil">
-        <div class="accueil-overlay-container">
-            <h1 class="accueil-quote" data-translate="accueil_quote">
-                « Le plus beau résultat en médecine esthétique est celui que l'on remarque sans pouvoir l'expliquer »
-            </h1>
+      <!-- MOBILE HEADER ROW -->
+      <div class="nav-mobile-header">
+        <a href="#accueil" class="logo-mobile" aria-label="Carlit Laser Medical">
+          <svg viewBox="0 0 350 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(2, 4)">
+              <circle cx="20" cy="20" r="18" stroke="#FAF8F4" stroke-width="1.25" />
+              <text x="20" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="400" fill="#FAF8F4" text-anchor="middle">C</text>
+              <circle cx="28" cy="12" r="1.5" fill="#BD8C69" />
+            </g>
+            <text x="52" y="29" font-family="'Cormorant Garamond', Georgia, serif" font-weight="600" font-size="22" fill="#FAF8F4" letter-spacing="4">CARLIT</text>
+            <line x1="164" y1="14" x2="164" y2="30" stroke="#BD8C69" stroke-width="1" />
+            <text x="178" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="400" font-size="16" fill="#FAF8F4" letter-spacing="1">Laser Médical</text>
+          </svg>
+        </a>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="btn btn-blue" style="padding: 0.5rem 0.75rem; font-size: 13px;" data-i18n="nav.rdv_btn_short">RDV</a>
+          <button class="hamburger-btn" id="hamburger-trigger" aria-expanded="false" aria-controls="mobile-dropdown" aria-label="Menu principal">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-    </section>
+      </div>
 
-
-    <!-- Section 2: Prestations -->
-    <section id="prestations" class="bg-cream">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-translate="prestations_title">Nos Prestations</h2>
-                <p data-translate="prestations_subtitle">Une technologie médicale avancée au service de votre beauté naturelle</p>
-            </div>
-
-            <div class="prestations-grid">
-                <!-- 1. Diagnostic de Peau -->
-                <div class="prestation-card">
-                    <div class="prestation-image-wrapper">
-                        <span class="prestation-badge" data-translate="badge_diagnose">Analyse</span>
-                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=600&q=80" alt="Diagnostic de peau" class="prestation-img">
-                    </div>
-                    <div class="prestation-content">
-                        <div>
-                            <h3 class="prestation-title" data-translate="prest_1_title">Diagnostic de Peau</h3>
-                            <div class="prestation-equipment">Machine Aura</div>
-                            <p class="prestation-desc" data-translate="prest_1_desc">Une analyse technologique tridimensionnelle multispectrale de pointe pour révéler les besoins précis de votre derme profond.</p>
-                        </div>
-                        <a href="pages/diagnostic-peau.html" class="prestation-link">
-                            <span data-translate="learn_more">En savoir plus</span> <i data-lucide="arrow-right" style="width: 16px;"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 2. Laser CO2 -->
-                <div class="prestation-card">
-                    <div class="prestation-image-wrapper">
-                        <span class="prestation-badge" data-translate="badge_laser">Rénovation</span>
-                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80" alt="Laser CO2" class="prestation-img">
-                    </div>
-                    <div class="prestation-content">
-                        <div>
-                            <h3 class="prestation-title" data-translate="prest_2_title">Laser CO2</h3>
-                            <div class="prestation-equipment">UltraPulse Alpha</div>
-                            <p class="prestation-desc" data-translate="prest_2_desc">Technologie de relissage fractionnel d'excellence. Traite les rides profondes, cicatrices d'acné et stimule intensément le collagène.</p>
-                        </div>
-                        <a href="pages/laser-co2.html" class="prestation-link">
-                            <span data-translate="learn_more">En savoir plus</span> <i data-lucide="arrow-right" style="width: 16px;"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 3. IPL (Lumière Pulsée) -->
-                <div class="prestation-card">
-                    <div class="prestation-image-wrapper">
-                        <span class="prestation-badge" data-translate="badge_ipl">Lumière</span>
-                        <img src="https://images.unsplash.com/photo-1614859324967-bdf461fcf769?auto=format&fit=crop&w=600&q=80" alt="IPL Stellar M22" class="prestation-img">
-                    </div>
-                    <div class="prestation-content">
-                        <div>
-                            <h3 class="prestation-title" data-translate="prest_3_title">IPL</h3>
-                            <div class="prestation-equipment">Stellar M22</div>
-                            <p class="prestation-desc" data-translate="prest_3_desc">Traite les désordres pigmentaires, les taches solaires et la couperose. Améliore instantanément l'éclat global du teint.</p>
-                        </div>
-                        <a href="pages/ipl-m22.html" class="prestation-link">
-                            <span data-translate="learn_more">En savoir plus</span> <i data-lucide="arrow-right" style="width: 16px;"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 4. Radiofréquence Microneedling -->
-                <div class="prestation-card">
-                    <div class="prestation-image-wrapper">
-                        <span class="prestation-badge" data-translate="badge_rf">Raffermissement</span>
-                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80" alt="VirtueRF Microneedling" class="prestation-img">
-                    </div>
-                    <div class="prestation-content">
-                        <div>
-                            <h3 class="prestation-title" data-translate="prest_4_title">Radiofréquence Microneedling</h3>
-                            <div class="prestation-equipment">VirtueRF</div>
-                            <p class="prestation-desc" data-translate="prest_4_desc">L'association synergique ultime pour le raffermissement cutané, agissant sur le relâchement du visage et du cou.</p>
-                        </div>
-                        <a href="pages/virtue-rf.html" class="prestation-link">
-                            <span data-translate="learn_more">En savoir plus</span> <i data-lucide="arrow-right" style="width: 16px;"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 5. Injections & Botox -->
-                <div class="prestation-card">
-                    <div class="prestation-image-wrapper">
-                        <span class="prestation-badge" data-translate="badge_injection">Injections</span>
-                        <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80" alt="Injections Acide Hyaluronique" class="prestation-img">
-                    </div>
-                    <div class="prestation-content">
-                        <div>
-                            <h3 class="prestation-title" data-translate="prest_5_title">Injections Acide Hyaluronique & Toxine</h3>
-                            <div class="prestation-equipment">Technique Vivacy / Botox</div>
-                            <p class="prestation-desc" data-translate="prest_5_desc">Harmonisation des volumes et adoucissement des rides d'expression. Des résultats naturels pour restaurer la fraîcheur de vos traits fatigués.</p>
-                        </div>
-                        <a href="pages/injections.html" class="prestation-link">
-                            <span data-translate="learn_more">En savoir plus</span> <i data-lucide="arrow-right" style="width: 16px;"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- Section 3: Avant/Apres (Premium Carousel) -->
-    <section id="avant-apres" class="bg-white">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-translate="before_after_title">Résultats Avant / Après</h2>
-                <p data-translate="before_after_subtitle">Découvrez l'efficacité de nos protocoles de soins sur de vrais cas</p>
-            </div>
-
-            <div class="carousel-wrapper">
-                <!-- Navigation controls -->
-                <button class="carousel-btn carousel-btn-prev" onclick="prevSlide()" aria-label="Previous slide">
-                    <i data-lucide="chevron-left"></i>
-                </button>
-                <button class="carousel-btn carousel-btn-next" onclick="nextSlide()" aria-label="Next slide">
-                    <i data-lucide="chevron-right"></i>
-                </button>
-
-                <!-- Carousel Track container -->
-                <div class="carousel-track-container">
-                    <div class="carousel-track" id="carouselTrack">
-                        
-                        <!-- Slide 1: Laser CO2 treatment -->
-                        <div class="carousel-slide">
-                            <div class="carousel-card">
-                                <div class="comparison-container">
-                                    <div class="comparison-half comparison-left">
-                                        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=500&q=80" alt="Traitement Laser CO2 avant">
-                                        <span class="comparison-label" data-translate="lbl_before">Avant</span>
-                                    </div>
-                                    <div class="comparison-divider"></div>
-                                    <div class="comparison-half comparison-right">
-                                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=500&q=80" alt="Traitement Laser CO2 après">
-                                        <span class="comparison-label" data-translate="lbl_after">Après</span>
-                                    </div>
-                                </div>
-                                <div class="carousel-testimonial">
-                                    <i data-lucide="quote" class="quote-icon" style="width: 40px; height: 40px;"></i>
-                                    <p class="testimonial-text" data-translate="slide_1_quote">"Le traitement UltraPulse Alpha a effacé dix ans de ridules et mes cicatrices d'acné ont complètement disparu. Mon entourage me trouve rajeunie, sans pouvoir déceler que j'ai fait un soin."</p>
-                                    <span class="testimonial-author">Sophie D. — 46 ans (Laser CO2)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 2: Stellar M22 treatment -->
-                        <div class="carousel-slide">
-                            <div class="carousel-card">
-                                <div class="comparison-container">
-                                    <div class="comparison-half comparison-left">
-                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Traitement IPL avant">
-                                        <span class="comparison-label" data-translate="lbl_before">Avant</span>
-                                    </div>
-                                    <div class="comparison-divider"></div>
-                                    <div class="comparison-half comparison-right">
-                                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=500&q=80" alt="Traitement IPL après">
-                                        <span class="comparison-label" data-translate="lbl_after">Après</span>
-                                    </div>
-                                </div>
-                                <div class="carousel-testimonial">
-                                    <i data-lucide="quote" class="quote-icon" style="width: 40px; height: 40px;"></i>
-                                    <p class="testimonial-text" data-translate="slide_2_quote">"Mes taches de soleil et ma couperose sur les joues me complexaient énormément. Après 3 séances de Stellar M22, ma peau a retrouvé un teint parfaitement homogène et éclatant."</p>
-                                    <span class="testimonial-author">Marc L. — 51 ans (IPL Stellar M22)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 3: VirtueRF microneedling -->
-                        <div class="carousel-slide">
-                            <div class="carousel-card">
-                                <div class="comparison-container">
-                                    <div class="comparison-half comparison-left">
-                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Traitement VirtueRF avant">
-                                        <span class="comparison-label" data-translate="lbl_before">Avant</span>
-                                    </div>
-                                    <div class="comparison-divider"></div>
-                                    <div class="comparison-half comparison-right">
-                                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=500&q=80" alt="Traitement VirtueRF après">
-                                        <span class="comparison-label" data-translate="lbl_after">Après</span>
-                                    </div>
-                                </div>
-                                <div class="carousel-testimonial">
-                                    <i data-lucide="quote" class="quote-icon" style="width: 40px; height: 40px;"></i>
-                                    <p class="testimonial-text" data-translate="slide_3_quote">"Le relâchement cutané au niveau de l'ovale de mon visage me pesait. La synergie du VirtueRF a retendu mes traits de manière spectaculaire mais extrêmement naturelle."</p>
-                                    <span class="testimonial-author">Nathalie M. — 55 ans (VirtueRF)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 4: Vivacy Injection -->
-                        <div class="carousel-slide">
-                            <div class="carousel-card">
-                                <div class="comparison-container">
-                                    <div class="comparison-half comparison-left">
-                                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Injections avant">
-                                        <span class="comparison-label" data-translate="lbl_before">Avant</span>
-                                    </div>
-                                    <div class="comparison-divider"></div>
-                                    <div class="comparison-half comparison-right">
-                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80" alt="Injections après">
-                                        <span class="comparison-label" data-translate="lbl_after">Après</span>
-                                    </div>
-                                </div>
-                                <div class="carousel-testimonial">
-                                    <i data-lucide="quote" class="quote-icon" style="width: 40px; height: 40px;"></i>
-                                    <p class="testimonial-text" data-translate="slide_4_quote">"Je voulais corriger mes cernes creux et mes lèvres pincées. Le Dr. Rossi a utilisé les techniques Vivacy avec une main d'artiste. Zéro douleur et un résultat parfait."</p>
-                                    <span class="testimonial-author">Clara B. — 34 ans (Vivacy / Botox)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Navigation indicators -->
-                <div class="carousel-indicators">
-                    <button class="indicator-dot active" onclick="goToSlide(0)"></button>
-                    <button class="indicator-dot" onclick="goToSlide(1)"></button>
-                    <button class="indicator-dot" onclick="goToSlide(2)"></button>
-                    <button class="indicator-dot" onclick="goToSlide(3)"></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- Section 4: Contact (Configured with photo-cab.png parallax) -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header section-header-box">
-                <h2 data-translate="contact_title">Prendre Contact</h2>
-                <p data-translate="contact_subtitle">Planifiez votre consultation personnalisée au cabinet</p>
-            </div>
-
-            <div class="contact-grid">
-                <!-- Contact Form Wrapper -->
-                <div class="contact-form-container">
-                    <h3 class="contact-form-title" data-translate="form_heading">Demande d'informations</h3>
-                    <form id="cabinetContactForm" onsubmit="handleFormSubmission(event)">
-                        <div class="form-group">
-                            <label class="form-label" for="form_name" data-translate="label_name">Nom & Prénom *</label>
-                            <input type="text" id="form_name" class="form-control" placeholder="Jean Dupont" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="form_email" data-translate="label_email">Adresse E-mail *</label>
-                            <input type="email" id="form_email" class="form-control" placeholder="jean.dupont@gmail.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="form_phone" data-translate="label_phone">Numéro de téléphone</label>
-                            <input type="tel" id="form_phone" class="form-control" placeholder="06 12 34 56 78">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-translate="label_services">Prestations souhaitées (sélection multiple)</label>
-                            <div class="checkbox-grid">
-                                <label class="checkbox-custom-label">
-                                    <input type="checkbox" name="services" value="diagnostic">
-                                    <span data-translate="service_diag">Diagnostic Aura</span>
-                                </label>
-                                <label class="checkbox-custom-label">
-                                    <input type="checkbox" name="services" value="laser_co2">
-                                    <span data-translate="service_laser">Laser CO2</span>
-                                </label>
-                                <label class="checkbox-custom-label">
-                                    <input type="checkbox" name="services" value="ipl">
-                                    <span data-translate="service_ipl">IPL Stellar M22</span>
-                                </label>
-                                <label class="checkbox-custom-label">
-                                    <input type="checkbox" name="services" value="radiofrequency">
-                                    <span data-translate="service_rf">VirtueRF</span>
-                                </label>
-                                <label class="checkbox-custom-label">
-                                    <input type="checkbox" name="services" value="injections">
-                                    <span data-translate="service_inj">Injections / Botox</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="form_message" data-translate="label_msg">Votre Message *</label>
-                            <textarea id="form_message" rows="4" class="form-control" placeholder="Décrivez votre projet esthétique ou posez vos questions..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit" id="btnSubmitForm" data-translate="btn_send">Envoyer la demande</button>
-                    </form>
-                </div>
-
-                <!-- Info Map column -->
-                <div class="contact-info-column">
-                    <!-- Google Maps Iframe Embed for Perpignan -->
-                    <div class="contact-map-wrapper">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.8058296996324!2d2.8885449767675765!3d42.697241313725835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b06e409c952b1d%3A0xf6702e7747e4eb1!2s3%20Rue%20Jeanne%20d&#39;Arc%2C%2066000%20Perpignan!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Plan d'accès cabinet Carlit Laser Medical">
-                        </iframe>
-                    </div>
-
-                    <!-- Contact details -->
-                    <div class="contact-details-box">
-                        <div class="contact-detail-item">
-                            <div class="contact-icon-wrapper">
-                                <i data-lucide="map-pin" style="width: 20px; height: 20px;"></i>
-                            </div>
-                            <div>
-                                <h4 class="contact-detail-title" data-translate="lbl_addr_title">Adresse du Cabinet</h4>
-                                <p class="contact-detail-text">3 Rue Jeanne d'Arc, 66000 Perpignan</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-detail-item">
-                            <div class="contact-icon-wrapper">
-                                <i data-lucide="phone" style="width: 20px; height: 20px;"></i>
-                            </div>
-                            <div>
-                                <h4 class="contact-detail-title" data-translate="lbl_phone_title">Téléphone</h4>
-                                <p class="contact-detail-text"><a href="#" class="phone-link">Non communiqué (TBA)</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-detail-item">
-                            <div class="contact-icon-wrapper">
-                                <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
-                            </div>
-                            <div>
-                                <h4 class="contact-detail-title" data-translate="lbl_mail_title">E-mail</h4>
-                                <p class="contact-detail-text"><a href="mailto:carlitlasermedical@gmail.com">carlitlasermedical@gmail.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- Section 5: Equipe (2 cards side by side) -->
-    <section id="equipe" class="bg-white">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-translate="team_title">L'Équipe du Cabinet</h2>
-                <p data-translate="team_subtitle">Des professionnels passionnés, formés aux dernières technologies médicales</p>
-            </div>
-
-            <div class="equipe-grid">
-                <!-- Member 1: Dr Nicolas Rossi -->
-                <div class="equipe-card">
-                    <div class="equipe-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80" alt="Dr Nicolas Rossi" class="equipe-img">
-                        <span class="equipe-role-badge" data-translate="role_doctor">Médecin Esthétique</span>
-                    </div>
-                    <div class="equipe-body">
-                        <h3 class="equipe-name">Dr. Nicolas Rossi</h3>
-                        <p class="equipe-degree" data-translate="member_1_degree">Médecin Généraliste — DIU de Médecine Esthétique</p>
-                        <p class="equipe-bio" data-translate="member_1_bio">
-                            Spécialisé dans les traitements laser complexes et l'harmonie faciale globale. Le Dr. Rossi prône une médecine préventive et naturelle, axée sur la précision du geste et le respect scrupuleux de l'anatomie de chaque visage.
-                        </p>
-                        <p class="equipe-quote" data-translate="member_1_quote">
-                            "Révéler la splendeur de l'âge sans altérer la vérité de l'expression."
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Member 2: Laura Rossi -->
-                <div class="equipe-card">
-                    <div class="equipe-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&w=600&q=80" alt="Laura Rossi" class="equipe-img">
-                        <span class="equipe-role-badge" data-translate="role_nurse">Infirmière</span>
-                    </div>
-                    <div class="equipe-body">
-                        <h3 class="equipe-name">Laura Rossi</h3>
-                        <p class="equipe-degree" data-translate="member_2_degree">Infirmière Libérale — Experte Soins de Peau</p>
-                        <p class="equipe-bio" data-translate="member_2_bio">
-                            Forte de dix ans d'expérience hospitalière et libérale. Laura Rossi prend en charge la préparation dermatologique, les analyses spectrales Aura, l'accompagnement post-laser et l'administration des protocoles de photorajeunissement.
-                        </p>
-                        <p class="equipe-quote" data-translate="member_2_quote">
-                            "L'accompagnement et la douceur du soin font partie intégrante du résultat final."
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Toast Notification for Form submission success -->
-    <div class="toast-notification" id="formToast">
-        <i data-lucide="check-circle" style="color: #4ade80;"></i>
-        <div>
-            <p style="font-weight: 600;" data-translate="toast_success">Message envoyé avec succès !</p>
-            <p style="font-size: 0.85rem;" data-translate="toast_sub">Nous vous recontacterons sous 24h.</p>
-        </div>
     </div>
 
-
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <!-- Footer Column 1: Brand Info -->
-                <div class="footer-brand">
-                    <h3>Carlit Laser <span style="color: var(--color-terracotta);">Medical</span></h3>
-                    <p data-translate="footer_desc">Cabinet de médecine esthétique et laser de pointe à Perpignan. Retrouvez des soins sur-mesure d'excellence.</p>
-                    <div class="footer-social-links">
-                        <a href="#" class="social-circle-btn" aria-label="Instagram Profile" title="Suivez-nous sur Instagram">
-                            <i data-lucide="instagram"></i>
-                        </a>
-                        <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Doctolib Profile" title="Prendre rendez-vous sur Doctolib">
-                            <i data-lucide="calendar"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Footer Column 2: Navigation Links -->
-                <div>
-                    <h4 class="footer-links-title" data-translate="footer_links_title">Navigation</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="#accueil" class="scroll-trigger" data-translate="nav_accueil">Accueil</a></li>
-                        <li><a href="#prestations" class="scroll-trigger" data-translate="nav_prestations">Prestations</a></li>
-                        <li><a href="#avant-apres" class="scroll-trigger" data-translate="nav_avant_apres">Avant / Après</a></li>
-                        <li><a href="#contact" class="scroll-trigger" data-translate="nav_contact">Contact</a></li>
-                        <li><a href="#equipe" class="scroll-trigger" data-translate="nav_equipe">Équipe</a></li>
-                    </ul>
-                </div>
-
-                <!-- Footer Column 3: Direct Contact Information -->
-                <div>
-                    <h4 class="footer-links-title" data-translate="footer_contact_title">Cabinet Perpignan</h4>
-                    <ul class="footer-links-list">
-                        <li class="footer-contact-item">
-                            <i data-lucide="map-pin" class="footer-contact-icon" style="width: 18px; height: 18px;"></i>
-                            <span>3 Rue Jeanne d'Arc, 66000 Perpignan</span>
-                        </li>
-                        <li class="footer-contact-item">
-                            <i data-lucide="phone" class="footer-contact-icon" style="width: 18px; height: 18px;"></i>
-                            <a href="#" class="phone-link">TBA (Non communiqué)</a>
-                        </li>
-                        <li class="footer-contact-item">
-                            <i data-lucide="mail" class="footer-contact-icon" style="width: 18px; height: 18px;"></i>
-                            <a href="mailto:carlitlasermedical@gmail.com">carlitlasermedical@gmail.com</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Copyright and legal lines -->
-            <div class="footer-bottom">
-                <p class="footer-copyright">
-                    &copy; 2026 Carlit Laser Medical — Tous droits réservés.
-                </p>
-                <div class="footer-bottom-links">
-                    <a href="#" data-translate="footer_legal">Mentions Légales</a>
-                    <span>&middot;</span>
-                    <a href="#" data-translate="footer_privacy">Politique de Confidentialité</a>
-                </div>
-            </div>
+    <!-- MOBILE DROPDOWN -->
+    <div class="mobile-dropdown" id="mobile-dropdown" role="dialog" aria-modal="true" aria-label="Menu Mobile">
+      <ul class="mobile-dropdown-links">
+        <li><a href="#accueil" data-i18n="nav.links.accueil">Accueil</a></li>
+        <li><a href="#prestations" data-i18n="nav.links.prestations">Prestations</a></li>
+        <li><a href="#avant-apres" data-i18n="nav.links.avant_apres">Avant / Après</a></li>
+        <li><a href="#equipe" data-i18n="nav.links.equipe">Notre Équipe</a></li>
+        <li><a href="#contact" data-i18n="nav.links.contact">Nous Contacter</a></li>
+      </ul>
+      <div class="mobile-dropdown-extra">
+        <div class="lang-switcher" role="navigation" aria-label="Langues mobile">
+          <button class="btn-lang active" data-lang="fr">FR</button>
+          <button class="btn-lang" data-lang="en">EN</button>
+          <button class="btn-lang" data-lang="es">ES</button>
         </div>
-    </footer>
+        <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="btn btn-blue" style="width: 100%;" data-i18n="nav.rdv_btn">Prendre RDV</a>
+      </div>
+    </div>
+  </header>
 
+  <!-- Mobile Dropdown Backdrop -->
+  <div class="mobile-dropdown-backdrop" id="mobile-backdrop"></div>
 
-    <!-- ========================================== -->
-    <!--             SPLIT JS EMULATION             -->
-    <!-- ========================================== -->
+  <main>
+    <!-- ==========================================================================
+         SECTION 1 — ACCUEIL (#accueil)
+         ========================================================================== -->
+    <section id="accueil" class="hero-section" aria-label="Introduction">
+      <!-- Simulated lazy load image logic with premium aesthetic placeholder underneath -->
+      <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221920%22 height=%221080%22 viewBox=%220 0 1920 1080%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%232d2015%22/><circle cx=%2250%25%22 cy=%2245%25%22 r=%22350%22 fill=%22%23733803%22 opacity=%220.15%22 filter=%22blur(80px)%22/><text x=%2250%25%22 y=%2248%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2280%22 fill=%22%23ffffff%22 opacity=%220.25%22>CARLIT LASER MEDICAL</text></svg>"
+           data-src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221920%22 height=%221080%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%232a221a%22/><path d=%22M0 0 L1920 1080 M1920 0 L0 1080%22 stroke=%22%23BD8C69%22 stroke-width=%221%22 opacity=%220.1%22/></svg>"
+           class="hero-image-bg skeleton-target" alt="Intérieur cabinet esthétique moderne et épuré">
 
-    <!-- [js/translations.js] -->
-    <script>
-        const translations = {
-            fr: {
-                btn_rdv: "Prendre RDV",
-                nav_accueil: "Accueil",
-                nav_prestations: "Prestations",
-                nav_avant_apres: "Avant / Après",
-                nav_contact: "Contact",
-                nav_equipe: "Équipe",
-                accueil_quote: "« Le plus beau résultat en médecine esthétique est celui que l'on remarque sans pouvoir l'expliquer »",
-                prestations_title: "Nos Prestations",
-                prestations_subtitle: "Une technologie médicale avancée au service de votre beauté naturelle",
-                learn_more: "En savoir plus",
-                badge_diagnose: "Analyse",
-                badge_laser: "Rénovation",
-                badge_ipl: "Lumière",
-                badge_rf: "Raffermissement",
-                badge_injection: "Injections",
-                prest_1_title: "Diagnostic de Peau",
-                prest_1_desc: "Une analyse technologique tridimensionnelle multispectrale de pointe pour révéler les besoins précis de votre derme profond.",
-                prest_2_title: "Laser CO2",
-                prest_2_desc: "Technologie de relissage fractionnel d'excellence. Traite les rides profondes, cicatrices d'acné et stimule intensément le collagène.",
-                prest_3_title: "IPL",
-                prest_3_desc: "Traite les désordres pigmentaires, les taches solaires et la couperose. Améliore instantanément l'éclat global du teint.",
-                prest_4_title: "Radiofréquence Microneedling",
-                prest_4_desc: "L'association synergique ultime pour le raffermissement cutané, agissant sur le relâchement du visage et du cou.",
-                prest_5_title: "Injections Acide Hyaluronique & Toxine",
-                prest_5_desc: "Harmonisation des volumes et adoucissement des rides d'expression. Des résultats naturels pour restaurer la fraîcheur de vos traits fatigués.",
-                before_after_title: "Résultats Avant / Après",
-                before_after_subtitle: "Découvrez l'efficacité de nos protocoles de soins sur de vrais cas",
-                lbl_before: "Avant",
-                lbl_after: "Après",
-                slide_1_quote: "\"Le traitement UltraPulse Alpha a effacé dix ans de ridules et mes cicatrices d'acné ont complètement disparu. Mon entourage me trouve rajeunie, sans pouvoir déceler que j'ai fait un soin.\"",
-                slide_2_quote: "\"Mes taches de soleil et ma couperose sur les joues me complexaient énormément. Après 3 séances de Stellar M22, ma peau a retrouvé un teint parfaitement homogène et éclatant.\"",
-                slide_3_quote: "\"Le relâchement cutané au niveau de l'ovale de mon visage me pesait. La synergie du VirtueRF a retendu mes traits de manière spectaculaire mais extrêmement naturelle.\"",
-                slide_4_quote: "\"Je voulais corriger mes cernes creux et mes lèvres pincées. Le Dr. Rossi a utilisé les techniques Vivacy avec une main d'artiste. Zéro douleur et un résultat parfait.\"",
-                contact_title: "Prendre Contact",
-                contact_subtitle: "Planifiez votre consultation personnalisée au cabinet",
-                form_heading: "Demande d'informations",
-                label_name: "Nom & Prénom *",
-                label_email: "Adresse E-mail *",
-                label_phone: "Numéro de téléphone",
-                label_services: "Prestations souhaitées (sélection multiple)",
-                service_diag: "Diagnostic Aura",
-                service_laser: "Laser CO2",
-                service_ipl: "IPL Stellar M22",
-                service_rf: "VirtueRF",
-                service_inj: "Injections / Botox",
-                label_msg: "Votre Message *",
-                btn_send: "Envoyer la demande",
-                lbl_addr_title: "Adresse du Cabinet",
-                lbl_phone_title: "Téléphone",
-                lbl_mail_title: "E-mail",
-                team_title: "L'Équipe du Cabinet",
-                team_subtitle: "Des professionnels passionnés, formés aux dernières technologies médicales",
-                role_doctor: "Médecin Esthétique",
-                role_nurse: "Infirmière",
-                member_1_degree: "Médecin Généraliste — DIU de Médecine Esthétique",
-                member_1_bio: "Spécialisé dans les traitements laser complexes et l'harmonie faciale globale. Le Dr. Rossi prône une médecine préventive et naturelle, axée sur la précision du geste et le respect scrupuleux de l'anatomie de chaque visage.",
-                member_1_quote: "\"Révéler la splendeur de l'âge sans altérer la vérité de l'expression.\"",
-                member_2_degree: "Infirmière Libérale — Experte Soins de Peau",
-                member_2_bio: "Forte de dix ans d'expérience hospitalière et libérale. Laura Rossi prend en charge la préparation dermatologique, les analyses spectrales Aura, l'accompagnement post-laser et l'administration des protocoles de photorajeunissement.",
-                member_2_quote: "\"L'accompagnement et la douceur du soin font partie intégrante du résultat final.\"",
-                toast_success: "Message envoyé avec succès !",
-                toast_sub: "Nous vous recontacterons sous 24h.",
-                footer_desc: "Cabinet de médecine esthétique et laser de pointe à Perpignan. Retrouvez des soins sur-mesure d'excellence.",
-                footer_links_title: "Navigation",
-                footer_contact_title: "Cabinet Perpignan",
-                footer_legal: "Mentions Légales",
-                footer_privacy: "Politique de Confidentialité"
-            },
-            en: {
-                btn_rdv: "Book Appointment",
-                nav_accueil: "Home",
-                nav_prestations: "Treatments",
-                nav_avant_apres: "Before / After",
-                nav_contact: "Contact",
-                nav_equipe: "Our Team",
-                accueil_quote: "\"The most beautiful result in aesthetic medicine is the one noticed without ever needing to be explained\"",
-                prestations_title: "Our Treatments",
-                prestations_subtitle: "Advanced medical technology serving your natural beauty",
-                learn_more: "Learn More",
-                badge_diagnose: "Analysis",
-                badge_laser: "Resurfacing",
-                badge_ipl: "Luminosity",
-                badge_rf: "Tightening",
-                badge_injection: "Injections",
-                prest_1_title: "Skin Diagnosis",
-                prest_1_desc: "State-of-the-art multi-spectral 3D technology analysis to reveal the exact needs of your deep dermis.",
-                prest_2_title: "CO2 Laser Resurfacing",
-                prest_2_desc: "Gold standard fractional skin resurfacing. Erases deep lines, acne scars, and intensively triggers new collagen.",
-                prest_3_title: "IPL (Intense Pulsed Light)",
-                prest_3_desc: "Targets pigment issues, sunspots, and redness. Instantly increases overall complexion clarity and glow.",
-                prest_4_title: "Radiofrequency Microneedling",
-                prest_4_desc: "The absolute synergy for high-performance dermis tightening, tackling loose facial and neck tissues.",
-                prest_5_title: "Hyaluronic Acid & Botox Injections",
-                prest_5_desc: "Volume refinement and expression wrinkles softening. Natural-looking adjustments to revitalize tired looks.",
-                before_after_title: "Before & After Results",
-                before_after_subtitle: "Witness the performance of our personalized treatment protocols on real clients",
-                lbl_before: "Before",
-                lbl_after: "After",
-                slide_1_quote: "\"The UltraPulse Alpha treatment erased ten years of fine lines and my acne scars completely faded. Everyone tells me I look rejuvenated without guessing I had any procedures.\"",
-                slide_2_quote: "\"My sunspots and rosacea on my cheeks were major complexes. After only 3 sessions of Stellar M22, my skin regained an even tone and glow.\"",
-                slide_3_quote: "\"Saggy skin around my jawline was weighing on me. The VirtueRF synergy tightened my skin beautifully in a remarkably natural way.\"",
-                slide_4_quote: "\"I wanted to address under-eye hollows and thin lips. Dr. Rossi used Vivacy techniques with an artist's precision. Minimal discomfort and stunning outcomes.\"",
-                contact_title: "Contact Us",
-                contact_subtitle: "Plan your tailored consultation at our private clinic",
-                form_heading: "Information Request",
-                label_name: "Full Name *",
-                label_email: "Email Address *",
-                label_phone: "Phone Number",
-                label_services: "Desired Treatments (select all that apply)",
-                service_diag: "Aura Diagnosis",
-                service_laser: "CO2 Laser",
-                service_ipl: "IPL Stellar M22",
-                service_rf: "VirtueRF",
-                service_inj: "Injections / Botox",
-                label_msg: "Your Message *",
-                btn_send: "Send Request",
-                lbl_addr_title: "Clinic Address",
-                lbl_phone_title: "Phone",
-                lbl_mail_title: "Email",
-                team_title: "Meet the Team",
-                team_subtitle: "Passionate professionals trained in the latest clinical innovations",
-                role_doctor: "Aesthetic Doctor",
-                role_nurse: "Registered Nurse",
-                member_1_degree: "General Practitioner — Aesthetic Medicine University Diploma",
-                member_1_bio: "Specialist in complex medical laser procedures and total facial harmony. Dr. Rossi advocates for preventative and natural treatments with strict respect for individual anatomy.",
-                member_1_quote: "\"To reveal the grace of age while preserving the integrity of individual expression.\"",
-                member_2_degree: "Registered Nurse — Dermal Care Expert",
-                member_2_bio: "Ten years of hospital and private practice experience. Laura Rossi supervises skin prep, Aura clinical diagnostics, and post-laser recovery protocols.",
-                member_2_quote: "\"Personalized support and delicate gestures are essential components of the final aesthetic result.\"",
-                toast_success: "Message sent successfully!",
-                toast_sub: "We will reach back to you within 24 hours.",
-                footer_desc: "State-of-the-art medical aesthetics and laser center in Perpignan. Discover tailored elite treatments.",
-                footer_links_title: "Quick Links",
-                footer_contact_title: "Perpignan Clinic",
-                footer_legal: "Legal Notices",
-                footer_privacy: "Privacy Policy"
-            },
-            es: {
-                btn_rdv: "Reservar Cita",
-                nav_accueil: "Inicio",
-                nav_prestations: "Tratamientos",
-                nav_avant_apres: "Antes / Después",
-                nav_contact: "Contacto",
-                nav_equipe: "Equipo",
-                accueil_quote: "\"El resultado más hermoso en medicina estética es aquel que se nota sin tener que explicarse\"",
-                prestations_title: "Nuestros Tratamientos",
-                prestations_subtitle: "Tecnología médica avanzada al servicio de tu belleza natural",
-                learn_more: "Saber más",
-                badge_diagnose: "Análisis",
-                badge_laser: "Renovación",
-                badge_ipl: "Luminosidad",
-                badge_rf: "Reafirmación",
-                badge_injection: "Inyección",
-                prest_1_title: "Diagnóstico de Piel",
-                prest_1_desc: "Un análisis tecnológico 3D de alta precisión para descubrir los requisitos reales del cutis profundo.",
-                prest_2_title: "Láser CO2 Fraccionado",
-                prest_2_desc: "Tecnología líder para tratar arrugas profundas, cicatrices de acné y reestructurar el colágeno profundamente.",
-                prest_3_title: "IPL (Luz Pulsada)",
-                prest_3_desc: "Tratamiento idóneo para hiperpigmentación, manchas de sol y cuperosis. Brinda luminosidad inmediata.",
-                prest_4_title: "Radiofrecuencia Microneedling",
-                prest_4_desc: "La máxima combinación para el rejuvenecimiento facial y el tratamiento de la flacidez del cuello.",
-                prest_5_title: "Inyecciones y Toxina Botulínica",
-                prest_5_desc: "Armonización volumétrica y suavizado de líneas de expresión. Resultados óptimos y naturales para revitalizar el rostro.",
-                before_after_title: "Resultados Antes y Después",
-                before_after_subtitle: "Descubra la eficacia de nuestros tratamientos a través de casos reales",
-                lbl_before: "Antes",
-                lbl_after: "Después",
-                slide_1_quote: "\"El tratamiento UltraPulse Alpha borró diez años de arrugas y mis marcas de acné desaparecieron. La gente nota mi piel fresca, pero nadie nota que me hice algo.\"",
-                slide_2_quote: "\"Las manchas solares y rojeces me molestaban muchísimo. Con 3 sesiones de Stellar M22, recuperé un tono de piel homogéneo.\"",
-                slide_3_quote: "\"Me preocupaba la flacidez en la barbilla. VirtueRF tensó mi piel de forma impecable y extremadamente sutil.\"",
-                slide_4_quote: "\"Quería corregir mis ojeras y labios. El Dr. Rossi aplicó Vivacy con mano de artista. Sin dolor y con un resultado excelente.\"",
-                contact_title: "Contacto",
-                contact_subtitle: "Agende su consulta personalizada en el gabinete",
-                form_heading: "Solicitud de Información",
-                label_name: "Nombre completo *",
-                label_email: "Correo electrónico *",
-                label_phone: "Número de teléfono",
-                label_services: "Servicios de interés (selección múltiple)",
-                service_diag: "Diagnóstico Aura",
-                service_laser: "Láser CO2",
-                service_ipl: "IPL Stellar M22",
-                service_rf: "VirtueRF",
-                service_inj: "Inyecciones / Botox",
-                label_msg: "Su Mensaje *",
-                btn_send: "Enviar Solicitud",
-                lbl_addr_title: "Dirección de la Clínica",
-                lbl_phone_title: "Teléfono",
-                lbl_mail_title: "Correo",
-                team_title: "El Equipo",
-                team_subtitle: "Profesionales apasionados, formados en tecnología de vanguardia médica",
-                role_doctor: "Médico Estético",
-                role_nurse: "Enfermera",
-                member_1_degree: "Médico Generalista — DIU en Medicina Estética",
-                member_1_bio: "Especialista en procedimientos láser avanzados y armonía integral del rostro. Aboga por resultados discretos y el cuidado escrupuloso de la anatomía facial.",
-                member_1_quote: "\"Revelar la juventud de la edad sin alterar la verdad de la expresión.\"",
-                member_2_degree: "Enfermera Colegiada — Experta en Cuidados de Piel",
-                member_2_bio: "Con una trayectoria sólida de diez años en cuidados hospitalarios. Laura gestiona los análisis Aura y el apoyo de curación post-láser.",
-                member_2_quote: "\"El acompañamiento cariñoso y la delicadeza técnica son pilares fundamentales del tratamiento.\"",
-                toast_success: "¡Mensaje enviado con éxito!",
-                toast_sub: "Le responderemos en menos de 24 horas.",
-                footer_desc: "Gabinete avanzado de medicina estética y láser en Perpiñán. Descubra tratamientos de élite a su medida.",
-                footer_links_title: "Navegación",
-                footer_contact_title: "Gabinete Perpiñán",
-                footer_legal: "Aviso Legal",
-                footer_privacy: "Política de Privacidad"
-            }
-        };
+      <div class="hero-container">
+        <a href="#prestations" class="btn btn-outline-white btn-with-logo btn-hero-cta">
+          <span class="btn-logo" aria-hidden="true"><img src="assets/logo_no_backgound.jpg" alt=""></span>
+          <span data-i18n="hero.cta">Découvrir nos soins ↓</span>
+        </a>
+        <p class="hero-quote" data-i18n="hero.quote">
+          "Le plus beau résultat en médecine esthétique est celui que l'on remarque sans pouvoir l'expliquer"
+        </p>
+      </div>
+    </section>
 
-        let currentLang = 'fr';
+    <!-- ==========================================================================
+         SECTION 2 — PRESTATIONS (#prestations)
+         ========================================================================== -->
+    <section id="prestations" class="prestations-section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="prestations.title">Nos Prestations</h2>
 
-        // Backend-compatible modular API object for translation handling
-        const Translator = {
-            setLang: function(lang) {
-                if (!translations[lang]) return;
-                currentLang = lang;
-                
-                // Active flag indicators adjustment
-                document.querySelectorAll('.flag-btn').forEach(btn => btn.classList.remove('active'));
-                const activeBtn = document.getElementById(`flag-${lang}`);
-                if (activeBtn) activeBtn.classList.add('active');
+        <div class="prestations-grid">
 
-                // Dynamic text translations
-                document.querySelectorAll('[data-translate]').forEach(el => {
-                    const key = el.getAttribute('data-translate');
-                    if (translations[lang][key]) {
-                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                            el.placeholder = translations[lang][key];
-                        } else {
-                            // Retain inline SVGs/Icons if they are in the element
-                            const icon = el.querySelector('i[data-lucide]');
-                            if (icon) {
-                                const iconName = icon.getAttribute('data-lucide');
-                                el.innerHTML = `<i data-lucide="${iconName}"></i> ${translations[lang][key]}`;
-                                lucide.createIcons();
-                            } else {
-                                el.textContent = translations[lang][key];
-                            }
-                        }
-                    }
-                });
+          <!-- Card 1 -->
+          <article class="prestation-card">
+            <div class="card-image-wrapper">
+              <img class="skeleton-target" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='100%' height='100%' fill='%23EDE1D3'/></svg>" data-src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23E2DEC7'/><circle cx='200' cy='150' r='60' fill='%23BD8C69' opacity='0.3'/></svg>" alt="Skin diagnosis Aura">
+              <div class="card-icon-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.25z"/></svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title" data-i18n="prestations.card1.title">Diagnostique de peau</h3>
+              <span class="card-badge" data-i18n="prestations.card1.machine">Aura</span>
+              <p class="card-desc" data-i18n="prestations.card1.desc">Analyse complète de la peau par imagerie avancée. Détection des imperfections, taches pigmentaires et signes du vieillissement invisibles à l'œil nu.</p>
+              <p class="card-price" data-i18n="prestations.card1.price">À partir de 60 €</p>
+              <a href="pages/diagnostique-peau.html" class="card-link" data-i18n="prestations.learn_more">En savoir plus →</a>
+            </div>
+          </article>
 
-                // Set HTML language tag
-                document.documentElement.lang = lang;
-            },
-            getTranslation: function(key) {
-                return translations[currentLang][key] || key;
-            }
-        };
+          <!-- Card 2 -->
+          <article class="prestation-card">
+            <div class="card-image-wrapper">
+              <img class="skeleton-target" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='100%' height='100%' fill='%23EDE1D3'/></svg>" data-src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23E2DEC7'/><circle cx='200' cy='150' r='60' fill='%23BD8C69' opacity='0.3'/></svg>" alt="Laser CO2 treatment">
+              <div class="card-icon-badge">
+                <svg viewBox="0 0 24 24"><path d="M19.36 10.04L20.57 7.62L23 6.41L20.57 5.2L19.36 2.78L18.15 5.2L15.73 6.41L18.15 7.62L19.36 10.04M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z"/></svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title" data-i18n="prestations.card2.title">Laser CO₂</h3>
+              <span class="card-badge" data-i18n="prestations.card2.machine">Lumenis UltraPulse Alpha</span>
+              <p class="card-desc" data-i18n="prestations.card2.desc">Traitement de resurfacing cutané par laser CO₂ fractionné. Efficace sur les rides, cicatrices et irrégularités de texture. Résultats visibles dès la première séance.</p>
+              <p class="card-price" data-i18n="prestations.card2.price">À partir de 350 €</p>
+              <a href="pages/laser-co2.html" class="card-link" data-i18n="prestations.learn_more">En savoir plus →</a>
+            </div>
+          </article>
 
-        function setLanguage(lang) {
-            Translator.setLang(lang);
-        }
-    </script>
+          <!-- Card 3 -->
+          <article class="prestation-card">
+            <div class="card-image-wrapper">
+              <img class="skeleton-target" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='100%' height='100%' fill='%23EDE1D3'/></svg>" data-src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23E2DEC7'/><circle cx='200' cy='150' r='60' fill='%23BD8C69' opacity='0.3'/></svg>" alt="IPL treatment">
+              <div class="card-icon-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM6.16 5.1a.75.75 0 011.06 0l1.59 1.59a.75.75 0 11-1.06 1.06L6.16 6.16a.75.75 0 010-1.06zm11.68 0a.75.75 0 010 1.06l-1.59 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm14.25 0a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5h-2.25a.75.75 0 01-.75-.75zM12 17.25a5.25 5.25 0 100-10.5 5.25 5.25 0 000 10.5z"/></svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title" data-i18n="prestations.card3.title">IPL (Lumière Pulsée)</h3>
+              <span class="card-badge" data-i18n="prestations.card3.machine">Lumenis Stellar M22</span>
+              <p class="card-desc" data-i18n="prestations.card3.desc">Lumière pulsée intense pour traiter les rougeurs, taches et pilosité indésirable. Traitement doux et adapté à tous les phototypes.</p>
+              <p class="card-price" data-i18n="prestations.card3.price">À partir de 120 €</p>
+              <a href="pages/ipl.html" class="card-link" data-i18n="prestations.learn_more">En savoir plus →</a>
+            </div>
+          </article>
 
-    <!-- [js/carousel.js] -->
-    <script>
-        // Object-Oriented Carousel Controller ready for APIs/Dynamic database loading
-        class BeforeAfterCarousel {
-            constructor() {
-                this.track = document.getElementById('carouselTrack');
-                if (!this.track) return;
-                this.slides = Array.from(this.track.children);
-                this.dots = Array.from(document.querySelectorAll('.indicator-dot'));
-                this.currentIndex = 0;
-                this.slideWidth = 100; // represented as %
-                
-                this.initTouchSupport();
-            }
+          <!-- Card 4 -->
+          <article class="prestation-card">
+            <div class="card-image-wrapper">
+              <img class="skeleton-target" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='100%' height='100%' fill='%23EDE1D3'/></svg>" data-src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23E2DEC7'/><circle cx='200' cy='150' r='60' fill='%23BD8C69' opacity='0.3'/></svg>" alt="VirtueRF Radiofrequency microneedling">
+              <div class="card-icon-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title" data-i18n="prestations.card4.title">Radiofréquence Microneedling</h3>
+              <span class="card-badge" data-i18n="prestations.card4.machine">VirtueRF</span>
+              <p class="card-desc" data-i18n="prestations.card4.desc">Combinaison de micro-aiguilles et de radiofréquence pour stimuler le collagène en profondeur. Raffermissement cutané et réduction des ridules.</p>
+              <p class="card-price" data-i18n="prestations.card4.price">À partir de 280 €</p>
+              <a href="pages/radiofrequence.html" class="card-link" data-i18n="prestations.learn_more">En savoir plus →</a>
+            </div>
+          </article>
 
-            updatePosition() {
-                this.track.style.transform = `translateX(-${this.currentIndex * this.slideWidth}%)`;
-                
-                // Indicators state updates
-                this.dots.forEach((dot, index) => {
-                    if (index === this.currentIndex) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-            }
+          <!-- Card 5 -->
+          <article class="prestation-card">
+            <div class="card-image-wrapper">
+              <img class="skeleton-target" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='100%' height='100%' fill='%23EDE1D3'/></svg>" data-src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23E2DEC7'/><circle cx='200' cy='150' r='60' fill='%23BD8C69' opacity='0.3'/></svg>" alt="Injections Botox and Hyaluronic acid">
+              <div class="card-icon-badge">
+                <svg viewBox="0 0 24 24"><path d="M4.5 10.5C3.67 10.5 3 11.17 3 12s.67 1.5 1.5 1.5S6 12.83 6 12s-.67-1.5-1.5-1.5zm0 4.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5S6 17.33 6 16.5s-.67-1.5-1.5-1.5zm0-9C3.67 6 3 6.67 3 7.5S3.67 9 4.5 9 6 8.33 6 7.5 5.33 6 4.5 6zm5 5.5h10v1H9.5v-1zm0-4.5h10v1H9.5v-1zm0 9h10v1H9.5v-1z"/></svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title" data-i18n="prestations.card5.title">Injections</h3>
+              <span class="card-badge" data-i18n="prestations.card5.machine">Vivacy + Toxine botulique</span>
+              <p class="card-desc" data-i18n="prestations.card5.desc">Injections d'acide hyaluronique pour restaurer les volumes et atténuer les rides. Résultats naturels, techniques douces, produits certifiés CE.</p>
+              <p class="card-price" data-i18n="prestations.card5.price">À partir de 200 €</p>
+              <a href="pages/injections.html" class="card-link" data-i18n="prestations.learn_more">En savoir plus →</a>
+            </div>
+          </article>
 
-            next() {
-                if (this.currentIndex < this.slides.length - 1) {
-                    this.currentIndex++;
-                } else {
-                    this.currentIndex = 0; // infinite loops back
-                }
-                this.updatePosition();
-            }
+          <!-- Card 6 -->
+          <article class="prestation-card">
+            <div class="card-image-wrapper">
+              <img class="skeleton-target" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='100%' height='100%' fill='%23EDE1D3'/></svg>" data-src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='100%' height='100%' fill='%23E2DEC7'/><circle cx='200' cy='150' r='60' fill='%23BD8C69' opacity='0.3'/></svg>" alt="Laser Tattoo Removal">
+              <div class="card-icon-badge">
+                <svg viewBox="0 0 24 24"><path d="M17.66 9.53l-7.07 7.07-4.24-4.24 7.07-7.07 4.24 4.24M19.07 8.12a1.005 1.005 0 000-1.41l-2.83-2.83a1.005 1.005 0 00-1.41 0L13.41 5.3l4.24 4.24 1.42-1.42m-14.14 7.07L3.5 19.5c-.13.52.03 1.08.4 1.45.38.38.94.53 1.46.4l4.31-1.43-4.24-4.24-.49.49z" fill="currentColor"/></svg>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title" data-i18n="prestations.card6.title">Détatouage</h3>
+              <span class="card-badge" data-i18n="prestations.card6.machine">Laser Q-Switched</span>
+              <p class="card-desc" data-i18n="prestations.card6.desc">Détatouage laser. Entre 1 et 3 séances.</p>
+              <p class="card-price" data-i18n="prestations.card6.price">À partir de 200 €</p>
+              <a href="pages/detatouage.html" class="card-link" data-i18n="prestations.learn_more">En savoir plus →</a>
+            </div>
+          </article>
 
-            prev() {
-                if (this.currentIndex > 0) {
-                    this.currentIndex--;
-                } else {
-                    this.currentIndex = this.slides.length - 1; // loop to last
-                }
-                this.updatePosition();
-            }
+        </div>
+      </div>
+    </section>
 
-            goTo(index) {
-                if (index >= 0 && index < this.slides.length) {
-                    this.currentIndex = index;
-                    this.updatePosition();
-                }
-            }
+    <!-- ==========================================================================
+         SECTION 3 — AVANT / APRÈS (#avant-apres)
+         ========================================================================== -->
+    <section id="avant-apres" class="before-after-section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="avant_apres.title">Avant / Après</h2>
 
-            // Adaptive Swipe Touch support for Mobile/Tablets (Requirement)
-            initTouchSupport() {
-                let startX = 0;
-                let endX = 0;
+        <div class="carousel-container" aria-live="polite">
+          <div class="carousel-track-viewport">
+            <div class="carousel-track" id="carousel-track">
 
-                this.track.addEventListener('touchstart', (e) => {
-                    startX = e.touches[0].clientX;
-                }, { passive: true });
+              <!-- Slide 1 -->
+              <div class="carousel-slide">
+                <div class="ba-slider">
+                  <div class="treatment-badge">Laser CO₂</div>
+                  <div class="ba-image ba-image-bottom">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23BD8C69'/><text x='50%' y='50%' fill='white' text-anchor='middle' dominant-baseline='middle'>APRÈS / AFTER (Raffermi)</text></svg>" alt="Laser CO2 Après">
+                    <span class="ba-label ba-label-after">Après</span>
+                  </div>
+                  <div class="ba-image ba-image-top">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23a17e65'/><text x='50%' y='50%' fill='white' text-anchor='middle' dominant-baseline='middle'>AVANT / BEFORE (Rides)</text></svg>" alt="Laser CO2 Avant">
+                    <span class="ba-label ba-label-before">Avant</span>
+                  </div>
+                  <div class="ba-divider"></div>
+                  <input type="range" min="0" max="100" value="50" class="ba-range" aria-label="Ajuster la vue Avant/Après Laser CO2">
+                </div>
+                <p class="slide-feedback">"Une peau lissée, des imperfections gommées." — Marie D.</p>
+              </div>
 
-                this.track.addEventListener('touchmove', (e) => {
-                    endX = e.touches[0].clientX;
-                }, { passive: true });
+              <!-- Slide 2 -->
+              <div class="carousel-slide">
+                <div class="ba-slider">
+                  <div class="treatment-badge">IPL M22</div>
+                  <div class="ba-image ba-image-bottom">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23BD8C69'/><text x='50%' y='50%' fill='white' text-anchor='middle' dominant-baseline='middle'>APRÈS / AFTER (Uniforme)</text></svg>" alt="IPL Après">
+                    <span class="ba-label ba-label-after">Après</span>
+                  </div>
+                  <div class="ba-image ba-image-top">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23a17e65'/><text x='50%' y='50%' fill='white' text-anchor='middle' dominant-baseline='middle'>AVANT / BEFORE (Rougeurs)</text></svg>" alt="IPL Avant">
+                    <span class="ba-label ba-label-before">Avant</span>
+                  </div>
+                  <div class="ba-divider"></div>
+                  <input type="range" min="0" max="100" value="50" class="ba-range" aria-label="Ajuster la vue Avant/Après IPL">
+                </div>
+                <p class="slide-feedback">"Mes rougeurs diffuses ont complètement disparu." — Jean R.</p>
+              </div>
 
-                this.track.addEventListener('touchend', () => {
-                    const threshold = 50; // swipe length minimum
-                    if (startX - endX > threshold) {
-                        this.next(); // swiped left
-                    } else if (endX - startX > threshold) {
-                        this.prev(); // swiped right
-                    }
-                });
-            }
-        }
+              <!-- Slide 3 -->
+              <div class="carousel-slide">
+                <div class="ba-slider">
+                  <div class="treatment-badge">Injections</div>
+                  <div class="ba-image ba-image-bottom">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23BD8C69'/><text x='50%' y='50%' fill='white' text-anchor='middle' dominant-baseline='middle'>APRÈS / AFTER (Repulpé)</text></svg>" alt="Injections Après">
+                    <span class="ba-label ba-label-after">Après</span>
+                  </div>
+                  <div class="ba-image ba-image-top">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23a17e65'/><text x='50%' y='50%' fill='white' text-anchor='middle' dominant-baseline='middle'>AVANT / BEFORE (Perte volume)</text></svg>" alt="Injections Avant">
+                    <span class="ba-label ba-label-before">Avant</span>
+                  </div>
+                  <div class="ba-divider"></div>
+                  <input type="range" min="0" max="100" value="50" class="ba-range" aria-label="Ajuster la vue Avant/Après Injections">
+                </div>
+                <p class="slide-feedback">"Un résultat naturel, fatigué de moins en moins." — Sophie L.</p>
+              </div>
 
-        let carousel;
-        window.addEventListener('load', () => {
-            carousel = new BeforeAfterCarousel();
-        });
+              <!-- Slide 4 -->
+              <div class="carousel-slide">
+                <div class="ba-slider">
+                  <div class="treatment-badge">VirtueRF</div>
+                  <div class="ba-image ba-image-bottom">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23BD8C69'/><text x='50%' y='50%' fill='white' text-anchor='middle' dominant-baseline='middle'>APRÈS / AFTER (Tendu)</text></svg>" alt="VirtueRF Après">
+                    <span class="ba-label ba-label-after">Après</span>
+                  </div>
+                  <div class="ba-image ba-image-top">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23a17e65'/><text x='50%' y='50%' fill='white' text-anchor='middle' dominant-baseline='middle'>AVANT / BEFORE (Relâchement)</text></svg>" alt="VirtueRF Avant">
+                    <span class="ba-label ba-label-before">Avant</span>
+                  </div>
+                  <div class="ba-divider"></div>
+                  <input type="range" min="0" max="100" value="50" class="ba-range" aria-label="Ajuster la vue Avant/Après VirtueRF">
+                </div>
+                <p class="slide-feedback">"L'ovale de mon visage est redessiné." — Nathalie G.</p>
+              </div>
 
-        function nextSlide() {
-            if (carousel) carousel.next();
-        }
+            </div>
+          </div>
 
-        function prevSlide() {
-            if (carousel) carousel.prev();
-        }
+          <!-- Controls -->
+          <div class="carousel-nav">
+            <button class="carousel-btn" id="carousel-prev" aria-label="Précédent">&larr;</button>
+            <button class="carousel-btn" id="carousel-next" aria-label="Suivant">&rarr;</button>
+          </div>
+          <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
 
-        function goToSlide(index) {
-            if (carousel) carousel.goTo(index);
-        }
-    </script>
+        <p class="rgpd-consent-notice" data-i18n="avant_apres.rgpd_note">
+          Photos publiées avec le consentement écrit des patients.
+        </p>
+      </div>
+    </section>
 
-    <!-- [js/main.js] -->
-    <script>
-        // Utility to check if local files load, fallback to premium Unsplash if they 404 in sandboxed preview frames
-        function checkAndApplyBackground(elementId, imageUrl, fallbackUrl, isContact = false) {
-            const img = new Image();
-            img.src = imageUrl;
-            img.onload = function() {
-                const el = document.getElementById(elementId);
-                if (el) {
-                    el.style.backgroundImage = `url('${imageUrl}')`;
-                }
-            };
-            img.onerror = function() {
-                const el = document.getElementById(elementId);
-                if (el) {
-                    el.style.backgroundImage = `url('${fallbackUrl}')`;
-                }
-            };
-        }
+    <!-- ==========================================================================
+         SECTION 5 — ÉQUIPE (#equipe)
+         ========================================================================== -->
+    <section id="equipe" class="team-section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="equipe.title">Notre Équipe</h2>
+        <div class="team-grid">
 
-        // Auto-run verification checks to support local files and premium aesthetic preview fallbacks
-        checkAndApplyBackground('accueil', 'assets/hero_background.png', 'https://images.unsplash.com/photo-1522337722403-f9a4131f943a?auto=format&fit=crop&w=1920&q=80');
-        checkAndApplyBackground('contact', 'assets/photo-cab.png', 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80', true);
+          <!-- Team 1 -->
+          <article class="team-card">
+            <div class="team-photo-container">
+              <img class="skeleton-target" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23EDE1D3'/></svg>" data-src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500'><rect width='100%' height='100%' fill='%23E2DEC7'/><circle cx='200' cy='180' r='80' fill='%23BD8C69' opacity='0.3'/><rect x='100' y='280' width='200' height='150' rx='10' fill='%23BD8C69' opacity='0.3'/></svg>" alt="Dr Nicolas Rossi Portrait">
+            </div>
+            <div class="team-info">
+              <h3 data-i18n="equipe.dr_rossi.name">Dr Nicolas Rossi</h3>
+              <p class="team-subtitle" data-i18n="equipe.dr_rossi.role">Médecin Généraliste / Médecine Esthétique</p>
+              <p class="team-bio" data-i18n="equipe.dr_rossi.bio">Passionné par la médecine esthétique, le Dr Nicolas Rossi accompagne ses patients vers des résultats naturels et harmonieux. Formé aux dernières techniques laser et aux injections, il place l'écoute et la sécurité au cœur de chaque consultation.</p>
+              <blockquote class="team-quote" data-i18n="equipe.dr_rossi.quote">
+                "Mon objectif est que chaque patient reparte en se sentant mieux dans sa peau, sans que cela se remarque de façon artificielle."
+              </blockquote>
+            </div>
+          </article>
 
-        // Init Lucide Icons
-        lucide.createIcons();
+          <!-- Team 2 -->
+          <article class="team-card">
+            <div class="team-photo-container">
+              <img class="skeleton-target" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect width='100%' height='100%' fill='%23EDE1D3'/></svg>" data-src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500'><rect width='100%' height='100%' fill='%23E2DEC7'/><circle cx='200' cy='180' r='80' fill='%23BD8C69' opacity='0.3'/><rect x='100' y='280' width='200' height='150' rx='10' fill='%23BD8C69' opacity='0.3'/></svg>" alt="Laura Rossi Portrait">
+            </div>
+            <div class="team-info">
+              <h3 data-i18n="equipe.laura.name">Laura Rossi</h3>
+              <p class="team-subtitle" data-i18n="equipe.laura.role">Infirmière Libérale / Suivi Post-Soin</p>
+              <p class="team-bio" data-i18n="equipe.laura.bio">Infirmière diplômée d'État, Laura Rossi assure le suivi post-soin et les soins infirmiers au sein du cabinet. Sa douceur et son professionnalisme sont au service du bien-être de chaque patient.</p>
+              <blockquote class="team-quote" data-i18n="equipe.laura.quote">
+                "Je suis là pour que chaque étape de votre parcours soin soit sereine et en toute confiance."
+              </blockquote>
+            </div>
+          </article>
 
-        // Responsive Mobile Menu Interactions
-        function toggleMobileMenu() {
-            const menu = document.getElementById('nav-menu');
-            const icon = document.getElementById('menu-icon');
-            menu.classList.toggle('open');
-            
-            if (menu.classList.contains('open')) {
-                icon.setAttribute('data-lucide', 'x');
-            } else {
-                icon.setAttribute('data-lucide', 'menu');
-            }
-            lucide.createIcons();
-        }
+        </div>
+      </div>
+    </section>
 
-        function closeMobileMenu() {
-            const menu = document.getElementById('nav-menu');
-            const icon = document.getElementById('menu-icon');
-            if (menu && icon) {
-                menu.classList.remove('open');
-                icon.setAttribute('data-lucide', 'menu');
-                lucide.createIcons();
-            }
-        }
+    <!-- ==========================================================================
+         SECTION 4 — CONTACT (#contact)
+         ========================================================================== -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="contact.title">Nous Contacter</h2>
 
-        // Perfect Navigation clicks scroll listener to guarantee exact targets & smooth movement
-        document.addEventListener('DOMContentLoaded', () => {
-            const scrollTriggers = document.querySelectorAll('.scroll-trigger');
-            
-            scrollTriggers.forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
-                    const targetHref = this.getAttribute('href');
-                    if (targetHref.startsWith('#')) {
-                        e.preventDefault();
-                        const targetId = targetHref.substring(1);
-                        const targetElement = document.getElementById(targetId);
-                        
-                        if (targetElement) {
-                            // Close mobile menu if active
-                            closeMobileMenu();
-                            
-                            // Smooth scroll with sticky header offset
-                            const yOffset = -125; // Height adjustment for the header-sticky navigation bar
-                            const yPosition = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                            
-                            window.scrollTo({
-                                top: yPosition,
-                                behavior: 'smooth'
-                            });
-                            
-                            // Active navigation layout indicators trigger
-                            document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
-                            const correspondingNavLink = document.querySelector(`.menu-items a[href="#${targetId}"]`);
-                            if (correspondingNavLink) {
-                                correspondingNavLink.classList.add('active');
-                            }
-                        }
-                    }
-                });
-            });
-        });
+        <div class="contact-grid">
 
-        // Active Navigation Scroll spy
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section, header');
-            const navLinks = document.querySelectorAll('.menu-link');
-            
-            let currentActiveSectionId = 'accueil';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 145; // adjusting for sticky navbar height offset
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    currentActiveSectionId = section.getAttribute('id');
-                }
-            });
+          <!-- Left: Map & Direct Info -->
+          <div class="map-block">
+            <div class="map-frame-wrapper">
+              <div class="map-placeholder" id="map-placeholder">
+                <p data-i18n="contact.map_placeholder_text">Pour afficher la carte interactive Google Maps, veuillez accepter les cookies tiers.</p>
+                <button class="btn btn-primary" id="btn-activate-map" data-i18n="contact.map_activate_btn">Activer la carte</button>
+              </div>
+              <iframe id="google-map-iframe" class="map-iframe"
+                      src="about:blank"
+                      data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2931.5244517173164!2d2.894204576632486!3d42.703213013233816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b06e408ecbbbe7%3A0xe54d8520ec71597a!2s3%20Rue%20Jeanne%20d'Arc%2C%2066000%20Perpignan!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr"
+                      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentActiveSectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
+            <ul class="contact-infos-list">
+              <li>
+                <span>📍</span>
+                <span data-i18n="contact.info.address">3 Rue Jeanne d'Arc, 66000 Perpignan</span>
+              </li>
+              <li>
+                <span>📞</span>
+                <a href="tel:+33468512285">04 68 51 22 85</a>
+              </li>
+              <li>
+                <span>✉</span>
+                <a href="mailto:carlitlasermedical@gmail.com">carlitlasermedical@gmail.com</a>
+              </li>
+              <li>
+                <span>🗓</span>
+                <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" data-i18n="contact.info.doctolib_link">Prendre RDV sur Doctolib</a>
+              </li>
+            </ul>
+          </div>
 
-        // Dynamic Form Handling with API/Backend compatible data construction
-        function handleFormSubmission(event) {
-            event.preventDefault();
+          <!-- Right: Contact Form -->
+          <div>
+            <div class="form-error-banner" id="form-error-banner" role="alert"></div>
 
-            // Structure data payload ready for any future REST API endpoint
-            const formData = {
-                clientName: document.getElementById('form_name').value,
-                clientEmail: document.getElementById('form_email').value,
-                clientPhone: document.getElementById('form_phone').value || null,
-                selectedServices: Array.from(document.querySelectorAll('input[name="services"]:checked')).map(el => el.value),
-                clientMessage: document.getElementById('form_message').value,
-                timestamp: new Date().toISOString()
-            };
+            <form class="contact-form" id="contact-form" data-api-endpoint="/api/contact" novalidate>
 
-            // Mimicking REST backend post with simulated success response
-            console.log("Submitting API Payload to future backend:", formData);
+              <!-- Honeypot -->
+              <input name="website" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px" autocomplete="off">
 
-            const submitBtn = document.getElementById('btnSubmitForm');
-            submitBtn.disabled = true;
-            submitBtn.textContent = currentLang === 'fr' ? 'Envoi en cours...' : (currentLang === 'en' ? 'Sending...' : 'Enviando...');
+              <!-- Nom complet -->
+              <div class="form-group">
+                <label for="form-name" data-i18n="contact.form.name">Nom complet *</label>
+                <input type="text" id="form-name" name="name" class="form-input" required minlength="2">
+                <div class="field-error-msg" id="error-name" role="alert" data-i18n="contact.errors.name">Veuillez entrer votre nom complet (min. 2 caractères)</div>
+              </div>
 
-            setTimeout(() => {
-                // Successful submission trigger
-                showToastNotification();
-                
-                // Clear the form fields safely
-                document.getElementById('cabinetContactForm').reset();
-                submitBtn.disabled = false;
-                submitBtn.textContent = Translator.getTranslation('btn_send');
-            }, 1200);
-        }
+              <!-- Email -->
+              <div class="form-group">
+                <label for="form-email" data-i18n="contact.form.email">Adresse Email *</label>
+                <input type="email" id="form-email" name="email" class="form-input" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <div class="field-error-msg" id="error-email" role="alert" data-i18n="contact.errors.email">Adresse email invalide</div>
+              </div>
 
-        function showToastNotification() {
-            const toast = document.getElementById('formToast');
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 4500);
-        }
-    </script>
+              <!-- Téléphone -->
+              <div class="form-group">
+                <label for="form-phone" data-i18n="contact.form.phone">Téléphone (optionnel)</label>
+                <input type="tel" id="form-phone" name="phone" class="form-input" pattern="^(\+33|0)[1-9](\d{2}){4}$">
+                <div class="field-error-msg" id="error-phone" role="alert" data-i18n="contact.errors.phone">Format invalide (ex: 0612345678)</div>
+              </div>
+
+              <!-- Service(s) souhaité(s) -->
+              <fieldset style="border:none; margin-bottom:1.5rem;">
+                <legend class="checkbox-legend" data-i18n="contact.form.services_legend">Service(s) souhaité(s)</legend>
+                <div class="services-checkboxes-grid">
+                  <label class="checkbox-row">
+                    <input type="checkbox" name="services" value="Diagnostique de peau">
+                    <span data-i18n="prestations.card1.title">Diagnostique de peau</span>
+                  </label>
+                  <label class="checkbox-row">
+                    <input type="checkbox" name="services" value="Laser CO2">
+                    <span data-i18n="prestations.card2.title">Laser CO₂</span>
+                  </label>
+                  <label class="checkbox-row">
+                    <input type="checkbox" name="services" value="IPL">
+                    <span data-i18n="prestations.card3.title">IPL</span>
+                  </label>
+                  <label class="checkbox-row">
+                    <input type="checkbox" name="services" value="Radiofréquence">
+                    <span data-i18n="prestations.card4.title">Radiofréquence</span>
+                  </label>
+                  <label class="checkbox-row">
+                    <input type="checkbox" name="services" value="Injections">
+                    <span data-i18n="prestations.card5.title">Injections</span>
+                  </label>
+                  <label class="checkbox-row">
+                    <input type="checkbox" name="services" value="Détatouage">
+                    <span data-i18n="prestations.card6.title">Détatouage</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- Message -->
+              <div class="form-group">
+                <label for="form-message" data-i18n="contact.form.message">Message *</label>
+                <textarea id="form-message" name="message" class="form-input" rows="5" required minlength="10" maxlength="1000"></textarea>
+                <div class="message-char-counter"><span id="char-count">0</span> / 1000</div>
+                <div class="field-error-msg" id="error-message" role="alert" data-i18n="contact.errors.message">Le message doit contenir au moins 10 caractères</div>
+              </div>
+
+              <!-- RGPD Checkbox -->
+              <div class="form-group rgpd-checkbox-group">
+                <label class="checkbox-row" style="align-items: flex-start;">
+                  <input type="checkbox" id="form-rgpd" name="rgpd" required style="margin-top: 4px;">
+                  <span style="font-size: 0.9rem;" data-i18n="contact.form.rgpd_text">
+                    J'accepte que mes données soient traitées conformément à la <a href="pages/politique-confidentialite.html">politique de confidentialité</a>
+                  </span>
+                </label>
+                <div class="field-error-msg" id="error-rgpd" role="alert" data-i18n="contact.errors.rgpd">Vous devez accepter la politique de confidentialité</div>
+              </div>
+
+              <div class="form-submit-row">
+                <button type="submit" class="btn btn-primary btn-submit" id="btn-submit-contact">
+                  <span id="submit-text" data-i18n="contact.form.submit_btn">Envoyer le message →</span>
+                </button>
+              </div>
+
+            </form>
+
+            <!-- Success Card -->
+            <div class="success-feedback-card" id="success-card">
+              <div class="check-icon">✓</div>
+              <h3 data-i18n="contact.success.title">Message envoyé</h3>
+              <p data-i18n="contact.success.body">Message envoyé. Nous vous répondrons sous 48h.</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <!-- Row 1 -->
+      <div class="footer-row-1">
+        <div class="footer-logo">
+          <svg height="48" viewBox="0 0 350 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(2, 4)">
+              <circle cx="20" cy="20" r="18" stroke="#FAF8F4" stroke-width="1.25" />
+              <text x="20" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="400" fill="#FAF8F4" text-anchor="middle">C</text>
+              <circle cx="28" cy="12" r="1.5" fill="#BD8C69" />
+            </g>
+            <text x="52" y="29" font-family="'Cormorant Garamond', Georgia, serif" font-weight="600" font-size="22" fill="#FAF8F4" letter-spacing="4">CARLIT</text>
+            <line x1="164" y1="14" x2="164" y2="30" stroke="#BD8C69" stroke-width="1" />
+            <text x="178" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="400" font-size="16" fill="#FAF8F4" letter-spacing="1">Laser Médical</text>
+          </svg>
+        </div>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+          <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="social-btn" aria-label="Doctolib">🗓</a>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="footer-grid">
+
+        <div class="footer-col">
+          <h4 data-i18n="footer.col1.title">Coordonnées</h4>
+          <ul class="footer-links">
+            <li>📍 3 Rue Jeanne d'Arc, 66000 Perpignan</li>
+            <li>📞 <a href="tel:+33468512285">04 68 51 22 85</a></li>
+            <li>✉ <a href="mailto:carlitlasermedical@gmail.com">carlitlasermedical@gmail.com</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer.col2.title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#accueil" data-i18n="nav.links.accueil">Accueil</a></li>
+            <li><a href="#prestations" data-i18n="nav.links.prestations">Prestations</a></li>
+            <li><a href="#avant-apres" data-i18n="nav.links.avant_apres">Avant / Après</a></li>
+            <li><a href="#equipe" data-i18n="nav.links.equipe">Notre Équipe</a></li>
+            <li><a href="#contact" data-i18n="nav.links.contact">Nous Contacter</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer.col3.title">Légal</h4>
+          <ul class="footer-links">
+            <li><a href="pages/mentions-legales.html" data-i18n="footer.col3.legal">Mentions légales</a></li>
+            <li><a href="pages/politique-confidentialite.html" data-i18n="footer.col3.privacy">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <!-- Bottom Row -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Carlit Laser Medical — Tous droits réservés</p>
+        <p style="font-size: 0.8rem; line-height: 1.4; opacity: 0.7;" data-i18n="footer.medical_disclaimer">
+          ⚕ Ce site est à titre informatif uniquement et ne se substitue pas à une consultation médicale. Conformément au Code de déontologie médicale.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       GLOBAL PORTALS & FLOATING BARS
+       ========================================================================== -->
+  <!-- MOBILE STICKY CTA BAR -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="tel:+33468512285" class="mobile-cta-btn call-btn">
+      <span>📞</span> <span data-i18n="global.call">Appeler</span>
+    </a>
+    <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="mobile-cta-btn rdv-btn">
+      <span>🗓</span> <span data-i18n="global.rdv">RDV Doctolib</span>
+    </a>
+  </div>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-to-top" id="scroll-to-top" aria-label="Retourner en haut de page">↑</button>
+
+  <!-- COOKIE CONSENT BANNER -->
+  <div class="cookie-banner" id="cookie-banner">
+    <div class="cookie-container">
+      <p class="cookie-text" data-i18n="global.cookie_text">
+        Nous utilisons Google Maps pour vous localiser. En acceptant, vous autorisez le dépôt de cookies tiers par Google.
+      </p>
+      <div class="cookie-actions">
+        <button class="btn btn-outline-white" id="cookie-refuse-btn" style="color:var(--color-text); border-color:#ccc;" data-i18n="global.refuse">Refuser</button>
+        <button class="btn btn-primary" id="cookie-accept-btn" data-i18n="global.accept">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEMA.ORG LOCAL BUSINESS DATA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Carlit Laser Medical",
+    "image": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22630%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23FAF8F4%22/></svg>",
+    "@id": "https://carlitlasermedical.fr/#medical-business",
+    "url": "https://carlitlasermedical.fr/",
+    "telephone": "+33468512285",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "3 Rue Jeanne d'Arc",
+      "addressLocality": "Perpignan",
+      "postalCode": "66000",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 42.703213,
+      "longitude": 2.894204
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "sameAs": [
+      "https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi"
+    ]
+  }
+  </script>
+
+  <!-- Site behaviour (extracted to js/main.js) -->
+  <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <title>IPL — Lumière Pulsée — Lumenis Stellar M22 | Carlit Laser Medical</title>
+  <meta name="description" content="Photoréjuvénation par lumière pulsée intense (IPL) Lumenis Stellar M22 à Perpignan. Rougeurs, taches et éclat du teint. Dr Nicolas Rossi.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#733803">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚕️</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <a href="#presentation" class="skip-to-content" data-i18n="nav.skip_link">Aller au contenu</a>
+
+  <div id="disclaimer" class="disclaimer-bar" role="complementary">
+    <span data-i18n="global.disclaimer">⚕️ Ce site est informatif et ne remplace pas une consultation médicale.</span>
+    <button class="disclaimer-close" id="disclaimer-close" aria-label="Fermer le bandeau d'information">&times;</button>
+  </div>
+
+  <header class="header-wrapper" id="navbar">
+    <div class="navbar-container">
+      <div class="nav-desktop-upper">
+        <a href="../index.html#accueil" class="logo-link" aria-label="Carlit Laser Medical Accueil">
+          <svg viewBox="0 0 350 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(2, 4)">
+              <circle cx="20" cy="20" r="18" stroke="#FAF8F4" stroke-width="1.25" />
+              <text x="20" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="400" fill="#FAF8F4" text-anchor="middle">C</text>
+              <circle cx="28" cy="12" r="1.5" fill="#BD8C69" />
+            </g>
+            <text x="52" y="29" font-family="'Cormorant Garamond', Georgia, serif" font-weight="600" font-size="22" fill="#FAF8F4" letter-spacing="4">CARLIT</text>
+            <line x1="164" y1="14" x2="164" y2="30" stroke="#BD8C69" stroke-width="1" />
+            <text x="178" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="400" font-size="16" fill="#FAF8F4" letter-spacing="1">Laser Médical</text>
+          </svg>
+        </a>
+        <div class="nav-actions">
+          <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="btn btn-blue" data-i18n="nav.rdv_btn">Prendre RDV</a>
+          <div class="lang-switcher" role="navigation" aria-label="Langues">
+            <button class="btn-lang active" data-lang="fr" aria-label="Français">FR</button>
+            <button class="btn-lang" data-lang="en" aria-label="English">EN</button>
+            <button class="btn-lang" data-lang="es" aria-label="Español">ES</button>
+          </div>
+        </div>
+      </div>
+      <nav class="nav-desktop-lower" aria-label="Navigation principale">
+        <ul class="nav-menu-links">
+          <li><a href="../index.html#accueil" data-i18n="nav.links.accueil">Accueil</a></li>
+          <li><a href="../index.html#prestations" data-i18n="nav.links.prestations">Prestations</a></li>
+          <li><a href="../index.html#avant-apres" data-i18n="nav.links.avant_apres">Avant / Après</a></li>
+          <li><a href="../index.html#equipe" data-i18n="nav.links.equipe">Notre Équipe</a></li>
+          <li><a href="../index.html#contact" data-i18n="nav.links.contact">Nous Contacter</a></li>
+        </ul>
+      </nav>
+      <div class="nav-mobile-header">
+        <a href="../index.html#accueil" class="logo-mobile" aria-label="Carlit Laser Medical">
+          <svg viewBox="0 0 350 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g transform="translate(2, 4)">
+              <circle cx="20" cy="20" r="18" stroke="#FAF8F4" stroke-width="1.25" />
+              <text x="20" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="400" fill="#FAF8F4" text-anchor="middle">C</text>
+              <circle cx="28" cy="12" r="1.5" fill="#BD8C69" />
+            </g>
+            <text x="52" y="29" font-family="'Cormorant Garamond', Georgia, serif" font-weight="600" font-size="22" fill="#FAF8F4" letter-spacing="4">CARLIT</text>
+            <line x1="164" y1="14" x2="164" y2="30" stroke="#BD8C69" stroke-width="1" />
+            <text x="178" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="400" font-size="16" fill="#FAF8F4" letter-spacing="1">Laser Médical</text>
+          </svg>
+        </a>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="btn btn-blue" style="padding: 0.5rem 0.75rem; font-size: 13px;" data-i18n="nav.rdv_btn_short">RDV</a>
+          <button class="hamburger-btn" id="hamburger-trigger" aria-expanded="false" aria-controls="mobile-dropdown" aria-label="Menu principal">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-dropdown" id="mobile-dropdown" role="dialog" aria-modal="true" aria-label="Menu Mobile">
+      <ul class="mobile-dropdown-links">
+        <li><a href="../index.html#accueil" data-i18n="nav.links.accueil">Accueil</a></li>
+        <li><a href="../index.html#prestations" data-i18n="nav.links.prestations">Prestations</a></li>
+        <li><a href="../index.html#avant-apres" data-i18n="nav.links.avant_apres">Avant / Après</a></li>
+        <li><a href="../index.html#equipe" data-i18n="nav.links.equipe">Notre Équipe</a></li>
+        <li><a href="../index.html#contact" data-i18n="nav.links.contact">Nous Contacter</a></li>
+      </ul>
+      <div class="mobile-dropdown-extra">
+        <div class="lang-switcher" role="navigation" aria-label="Langues mobile">
+          <button class="btn-lang active" data-lang="fr">FR</button>
+          <button class="btn-lang" data-lang="en">EN</button>
+          <button class="btn-lang" data-lang="es">ES</button>
+        </div>
+        <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="btn btn-blue" style="width: 100%;" data-i18n="nav.rdv_btn">Prendre RDV</a>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-dropdown-backdrop" id="mobile-backdrop"></div>
+
+  <main>
+    <section class="subpage-hero">
+      <div class="container">
+        <span class="subpage-banner-label">Prestation</span>
+        <h1>IPL — Lumière Pulsée</h1>
+        <span class="machine-badge">Lumenis Stellar M22</span>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="../index.html#accueil">Accueil</a> / <a href="../index.html#prestations">Prestations</a> / <span>IPL</span>
+        </nav>
+      </div>
+    </section>
+
+    <div class="subpage-main">
+      <section id="presentation" class="subpage-section">
+        <div class="container">
+          <h2>Présentation</h2>
+          <p>Lumière pulsée intense pour traiter les rougeurs, taches et pilosité indésirable. Traitement doux et adapté à tous les phototypes.</p>
+          <!-- TODO: actual medical content -->
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </section>
+
+      <section id="indications" class="subpage-section">
+        <div class="container">
+          <h2>Indications</h2>
+          <!-- TODO: actual medical content -->
+          <ul class="bullet-list">
+            <li>Lorem ipsum dolor sit amet (indication placeholder)</li>
+            <li>Consectetur adipiscing elit (indication placeholder)</li>
+            <li>Sed do eiusmod tempor incididunt (indication placeholder)</li>
+            <li>Ut labore et dolore magna aliqua (indication placeholder)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="deroulement" class="subpage-section">
+        <div class="container">
+          <h2>Déroulement de la séance</h2>
+          <!-- TODO: actual medical content -->
+          <ol class="steps-list">
+            <li>Lorem ipsum dolor sit amet — accueil et préparation.</li>
+            <li>Consectetur adipiscing elit — étape placeholder.</li>
+            <li>Sed do eiusmod tempor — étape placeholder.</li>
+            <li>Ut enim ad minim veniam — étape placeholder.</li>
+            <li>Duis aute irure dolor — conseils post-séance.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="tarifs" class="subpage-section">
+        <div class="container">
+          <h2>Tarifs</h2>
+          <!-- TODO: actual medical content / validated pricing -->
+          <table class="pricing-table">
+            <thead>
+              <tr><th>Formule</th><th>Tarif</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Séance unique</td><td>À partir de 120 €</td></tr>
+              <tr><td>Forfait 3 séances</td><td>À partir de 324 €</td></tr>
+            </tbody>
+          </table>
+          <p class="subpage-disclaimer-note">Tarifs indicatifs, susceptibles d'être ajustés après consultation médicale personnalisée.</p>
+        </div>
+      </section>
+
+      <section id="contre-indications" class="subpage-section">
+        <div class="container">
+          <h2>Contre-indications</h2>
+          <!-- TODO: actual medical content -->
+          <ul class="contraindications-list">
+            <li>Lorem ipsum dolor sit amet (contre-indication placeholder)</li>
+            <li>Consectetur adipiscing elit (contre-indication placeholder)</li>
+            <li>Grossesse et allaitement (à confirmer médicalement)</li>
+            <li>Ut labore et dolore magna (contre-indication placeholder)</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <section class="cta-block">
+      <div class="container">
+        <h2>Envie d'un teint plus lumineux&nbsp;?</h2>
+        <div class="cta-actions">
+          <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="btn btn-blue" data-i18n="nav.rdv_btn">Prendre RDV</a>
+          <a href="../index.html#prestations" class="btn btn-primary">Retour aux prestations</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row-1">
+        <div class="footer-logo">
+          <svg height="48" viewBox="0 0 350 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(2, 4)">
+              <circle cx="20" cy="20" r="18" stroke="#FAF8F4" stroke-width="1.25" />
+              <text x="20" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="400" fill="#FAF8F4" text-anchor="middle">C</text>
+              <circle cx="28" cy="12" r="1.5" fill="#BD8C69" />
+            </g>
+            <text x="52" y="29" font-family="'Cormorant Garamond', Georgia, serif" font-weight="600" font-size="22" fill="#FAF8F4" letter-spacing="4">CARLIT</text>
+            <line x1="164" y1="14" x2="164" y2="30" stroke="#BD8C69" stroke-width="1" />
+            <text x="178" y="27" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="400" font-size="16" fill="#FAF8F4" letter-spacing="1">Laser Médical</text>
+          </svg>
+        </div>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+          <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="social-btn" aria-label="Doctolib">🗓</a>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 data-i18n="footer.col1.title">Coordonnées</h4>
+          <ul class="footer-links">
+            <li>📍 3 Rue Jeanne d'Arc, 66000 Perpignan</li>
+            <li>📞 <a href="tel:+33468512285">04 68 51 22 85</a></li>
+            <li>✉ <a href="mailto:carlitlasermedical@gmail.com">carlitlasermedical@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.col2.title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#accueil" data-i18n="nav.links.accueil">Accueil</a></li>
+            <li><a href="../index.html#prestations" data-i18n="nav.links.prestations">Prestations</a></li>
+            <li><a href="../index.html#avant-apres" data-i18n="nav.links.avant_apres">Avant / Après</a></li>
+            <li><a href="../index.html#equipe" data-i18n="nav.links.equipe">Notre Équipe</a></li>
+            <li><a href="../index.html#contact" data-i18n="nav.links.contact">Nous Contacter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.col3.title">Légal</h4>
+          <ul class="footer-links">
+            <li><a href="mentions-legales.html" data-i18n="footer.col3.legal">Mentions légales</a></li>
+            <li><a href="politique-confidentialite.html" data-i18n="footer.col3.privacy">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Carlit Laser Medical — Tous droits réservés</p>
+        <p style="font-size: 0.8rem; line-height: 1.4; opacity: 0.7;" data-i18n="footer.medical_disclaimer">
+          ⚕ Ce site est à titre informatif uniquement et ne se substitue pas à une consultation médicale. Conformément au Code de déontologie médicale.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="tel:+33468512285" class="mobile-cta-btn call-btn"><span>📞</span> <span data-i18n="global.call">Appeler</span></a>
+    <a href="https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi" target="_blank" rel="noopener" class="mobile-cta-btn rdv-btn"><span>🗓</span> <span data-i18n="global.rdv">RDV Doctolib</span></a>
+  </div>
+
+  <button class="scroll-to-top" id="scroll-to-top" aria-label="Retourner en haut de page">↑</button>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

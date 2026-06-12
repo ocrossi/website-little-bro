@@ -1,0 +1,554 @@
+
+
+CARLIT LASER MEDICAL — WEBSITE BUILD PROMPT v3
+═══════════════════════════════════════════════
+
+Build a multilingual, mobile-first medical aesthetics website for
+"Carlit Laser Medical" using plain HTML/CSS/JS (no frameworks).
+Single standalone entry point: index.html.
+
+═══════════════════════════════════════════════
+CLINIC INFORMATION
+═══════════════════════════════════════════════
+Name:       Carlit Laser Medical
+Address:    3 Rue Jeanne d'Arc, 66000 Perpignan
+Phone:      04 68 51 22 85  (href: tel:+33468512285)
+Email:      carlitlasermedical@gmail.com
+Doctolib:   https://www.doctolib.fr/medecin-generaliste/perpignan/nicolas-rossi
+Instagram:  # (placeholder — TBA)
+Copyright:  © 2026 Carlit Laser Medical — Tous droits réservés
+
+═══════════════════════════════════════════════
+FILE STRUCTURE
+═══════════════════════════════════════════════
+index.html
+css/
+  base.css          ← reset, CSS variables, fonts, reduced-motion
+  navbar.css        ← incl. mobile hamburger menu
+  sections.css      ← all section styles
+  footer.css
+  responsive.css    ← mobile-first breakpoint overrides
+js/
+  translations.js
+  carousel.js
+  beforeafter.js    ← before/after slider component
+  main.js
+assets/
+  logo.png, logo-white.png, photo-accueil.png, og-image.jpg
+  favicon.ico, favicon-32.png, favicon-180.png (apple-touch)
+  team-nicolas.jpg, team-laura.jpg
+  prestation-*.jpg (5 placeholders)
+  avant-*.jpg + apres-*.jpg (4 pairs)
+pages/
+  diagnostique-peau.html, laser-co2.html, ipl.html,
+  radiofrequence.html, injections.html,
+  mentions-legales.html, politique-confidentialite.html
+
+═══════════════════════════════════════════════
+DESIGN TOKENS (define ALL in :root)
+═══════════════════════════════════════════════
+--color-terracotta-light:  #BD8C69   ← decorative/accents
+--color-terracotta-dark:   #733803   ← text on light bg (AA compliant)
+--color-text:              #3C454A
+--color-bg-cream-1:        #E2DEC7   ← alternating section bg
+--color-bg-cream-2:        #EDE1D3
+--color-bg-white:          #FAF8F4
+--color-secondary:         #363d36   ← footer + disclaimer bar
+--color-rdv-blue:          #1A73C2
+--color-overlay:           rgba(28, 20, 14, 0.42)
+--color-error:             #C0392B
+--color-success:           #2D7A3E
+
+--navbar-height:           112px     ← desktop (2 rows)
+--navbar-height-mobile:    64px      ← mobile (1 row)
+
+--font-heading: 'Cormorant Garamond', Georgia, serif;
+--font-body:    'Lato', system-ui, -apple-system, sans-serif;
+
+Google Fonts: load with `display=swap`, preconnect to fonts.gstatic.com.
+
+═══════════════════════════════════════════════
+GLOBAL CSS RULES
+═══════════════════════════════════════════════
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+section[id] { scroll-margin-top: var(--navbar-height); }
+@media (max-width: 767px) {
+  section[id] { scroll-margin-top: var(--navbar-height-mobile); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+input, textarea, select { font-size: 16px; }  /* iOS no-zoom */
+img { max-width: 100%; height: auto; display: block; }
+:focus-visible { outline: 2px solid var(--color-terracotta-dark); outline-offset: 2px; }
+
+═══════════════════════════════════════════════
+STICKY NAVBAR
+═══════════════════════════════════════════════
+Desktop (≥1024px) — two rows:
+  Upper row (64px):
+    LEFT: logo (links to #accueil, height 40px)
+    CENTER: "Prendre RDV" button → Doctolib (target="_blank" rel="noopener")
+    RIGHT: 3 flag buttons (FR/EN/ES), 36×36px circles
+  Lower row (48px, centered):
+    5 anchor links: #accueil | #prestations | #avant-apres | #contact | #equipe
+    Active link (scroll-spy): color var(--color-terracotta-dark), underline 2px
+
+Tablet (768-1023px): same as desktop but condensed paddings.
+
+Mobile (≤767px) — single row (64px):
+  LEFT: logo (height 32px)
+  CENTER: compact "RDV" button (smaller padding, still blue)
+  RIGHT: hamburger button (44×44px tap target, animated ☰ → ✕)
+
+  Hamburger menu behavior:
+    - Slides down from top below navbar (max-height transition 0.35s ease)
+    - Full viewport width, background var(--color-bg-white)
+    - Contains: 5 nav links (stacked, 56px height each, border-bottom)
+                + 3 flag buttons row (centered, below nav links)
+                + Secondary "Prendre RDV" button (full width)
+    - Backdrop overlay (rgba(0,0,0,0.5)) below menu, click to close
+    - Body scroll locked when open (body.menu-open { overflow: hidden })
+    - ESC key closes menu
+    - Click on any link closes menu
+    - Hamburger animation: 3 spans → X (rotate 45° / opacity 0 / rotate -45°)
+    - Focus trap: Tab cycles within menu when open
+    - aria-expanded toggles on hamburger button
+
+Sticky: position: sticky; top: 0; z-index: 100;
+Background: var(--color-bg-white) with subtle shadow on scroll
+(add .scrolled class to navbar after window.scrollY > 10).
+
+═══════════════════════════════════════════════
+SECTION 1 — ACCUEIL (#accueil)
+═══════════════════════════════════════════════
+- min-height: 100svh (mobile-safe), fallback 100vh
+- Background: assets/photo-accueil.png, cover, center
+- IMPORTANT: do NOT use background-attachment: fixed (breaks iOS)
+- Overlay div with var(--color-overlay)
+- Preload hero image: <link rel="preload" as="image" href="assets/photo-accueil.png">
+- Quote (bottom-center, 10% from bottom on desktop, 15% on mobile, max-width 700px, padding 0 1.5rem):
+    FR: "Le plus beau résultat en médecine esthétique est celui que l'on remarque sans pouvoir l'expliquer"
+    EN: "The most beautiful result in aesthetic medicine is the one you notice without being able to explain it"
+    ES: "El resultado más bello en medicina estética es el que se nota sin poder explicarlo"
+    Style: italic, color #FFF, text-shadow 0 2px 8px rgba(0,0,0,0.4),
+           font-size clamp(1.05rem, 2.5vw, 1.6rem), text-align: center
+- Below quote: CTA button "Découvrir nos soins ↓" → smooth-scroll to #prestations
+    Style: outlined white button, hover fills with var(--color-terracotta-light)
+- Skeleton shimmer until image loads (handled by SkeletonLoader class)
+
+═══════════════════════════════════════════════
+SECTION 2 — PRESTATIONS (#prestations)
+═══════════════════════════════════════════════
+Background: var(--color-bg-cream-1)
+Padding: clamp(3rem, 8vw, 6rem) 1.5rem
+Heading: "Nos Prestations" (h2, centered, font-heading, clamp(2rem, 4vw, 2.75rem))
+
+Grid: 
+  Desktop: repeat(3, 1fr), gap 2rem
+  Tablet:  repeat(2, 1fr), gap 1.5rem
+  Mobile:  1fr, gap 1.25rem
+
+Card structure:
+  <article class="prestation-card">
+    <div class="card-image skeleton"> (200px tall, image lazy-load)
+    <div class="card-icon"> (48px SVG circle, terracotta)
+    <h3 class="card-title">Injections / Vivacy + Toxine botulique
+    <span class="card-badge"> (machine name, italic, small)
+    <p class="card-desc"> (3-4 lines, line-clamp on mobile)
+    <p class="card-price"> (À partir de XX €)
+    <a class="card-link"> "En savoir plus →"
+  </article>
+
+Card 1 — Diagnostique de peau / Aura / À partir de 60 € → pages/diagnostique-peau.html
+  FR desc: "Analyse complète de la peau par imagerie avancée. Détection des imperfections,
+            taches pigmentaires et signes du vieillissement invisibles à l'œil nu."
+Card 2 — Laser CO₂ / Lumenis UltraPulse Alpha / À partir de 350 € → pages/laser-co2.html
+  FR desc: "Traitement de resurfacing cutané par laser CO₂ fractionné. Efficace sur les
+            rides, cicatrices et irrégularités de texture. Résultats visibles dès la première séance."
+Card 3 — IPL / Lumenis Stellar M22 / À partir de 120 € → pages/ipl.html
+  FR desc: "Lumière pulsée intense pour traiter les rougeurs, taches et pilosité indésirable.
+            Traitement doux et adapté à tous les phototypes."
+Card 4 — Radiofréquence micro-needling / VirtueRF / À partir de 280 € → pages/radiofrequence.html
+  FR desc: "Combinaison de micro-aiguilles et de radiofréquence pour stimuler le collagène en
+            profondeur. Raffermissement cutané et réduction des ridules."
+Card 5 — Injections / Vivacy + Toxine botulique / À partir de 200 € → pages/injections.html
+  FR desc: "Injections d'acide hyaluronique pour restaurer les volumes et atténuer les rides.
+            Résultats naturels, techniques douces, produits certifiés CE."
+Card 6 — Detatouage / À partir de 200 € → pages/injections.html
+  FR desc: "Detatouage lasers. Entre 1 et 3 seances."
+
+
+
+Hover (desktop only, disabled on touch): translateY(-4px) + border-top 3px terracotta + box-shadow
+Touch devices: use :active state instead of :hover
+EN/ES descriptions: "Translation coming soon"
+
+═══════════════════════════════════════════════
+SECTION 3 — AVANT / APRÈS (#avant-apres)
+═══════════════════════════════════════════════
+Background: var(--color-bg-white)
+Heading: "Avant / Après" (centered)
+
+Carousel layout:
+  Desktop: 3 slides visible
+  Tablet:  2 slides visible
+  Mobile:  1 slide visible (centered, slight peek of next slide)
+
+Each slide = a Before/After comparison slider:
+  - Two stacked images (avant on top, après underneath OR reverse via clip-path)
+  - Use <input type="range" min="0" max="100" value="50"> as drag handle
+  - JS updates clip-path: inset(0 X% 0 0) on top image
+  - Vertical divider line + circular handle (44px tap target)
+  - Touch + mouse drag both supported (pointer events)
+  - Treatment badge top-left (e.g. "Laser CO₂")
+  - Client quote below image: italic + "— Marie D."
+  - Skeleton shimmer until images load
+
+Carousel controls:
+  - Prev/Next arrows: 44×44px circles, terracotta, positioned outside slides on desktop, inside on mobile
+  - Dot indicators below: 10px dots, 44px tap target via padding, gap 8px
+  - Touch swipe: touchstart/touchmove/touchend, delta > 50px = navigate
+  - Auto-play: 6s interval, pauses on hover/focus/touch/interaction
+  - Keyboard: arrow keys when carousel has focus
+  - aria-live="polite" on slide container
+  - aria-label on prev/next buttons
+
+RGPD note below carousel (centered, small, italic):
+  FR: "Photos publiées avec le consentement écrit des patients."
+  EN: "Photos published with written consent of patients."
+  ES: "Fotos publicadas con el consentimiento escrito de los pacientes."
+
+═══════════════════════════════════════════════
+SECTION 4 — CONTACT (#contact)
+═══════════════════════════════════════════════
+Background: var(--color-bg-cream-2)
+Heading: "Nous Contacter" (centered)
+
+Layout:
+  Desktop: 2 columns (map 50% / form 50%), gap 2rem
+  Tablet:  2 columns
+  Mobile:  Single column, form FIRST, map below
+
+LEFT — Map block:
+  - Lazy-loaded iframe (only injected after cookie consent for Google)
+  - Before consent: show static branded placeholder with address + button "Activer la carte"
+  - Iframe URL: real Google Maps embed for "3 Rue Jeanne d'Arc, 66000 Perpignan"
+  - min-height: 400px desktop / 300px mobile
+  - Below map (always visible regardless of consent):
+      📍 3 Rue Jeanne d'Arc, 66000 Perpignan
+      📞 <a href="tel:+33468512285">04 68 51 22 85</a>
+      ✉ <a href="mailto:carlitlasermedical@gmail.com">carlitlasermedical@gmail.com</a>
+      🗓 <a href="[doctolib]" target="_blank" rel="noopener">Prendre RDV sur Doctolib</a>
+
+RIGHT — Contact form:
+  <form class="contact-form" data-api-endpoint="/api/contact" novalidate>
+  Fields (all labels visible above inputs, NOT placeholder-only):
+    - Nom complet (text, required, minLength 2)
+    - Email (email, required, HTML5 pattern)
+    - Téléphone (tel, optional, pattern="^(\+33|0)[1-9](\d{2}){4}$")
+    - Service(s) souhaité(s) — 5 checkboxes (label clickable, 24px box, 44px tap target row)
+    - Message (textarea, 5 rows, required, minLength 10, maxLength 1000, char counter)
+    - RGPD checkbox (required): "J'accepte que mes données soient traitées conformément à la
+      <a href='pages/politique-confidentialite.html'>politique de confidentialité</a>"
+    - Honeypot: <input name="website" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
+  
+  Submit button: full-width on mobile, "Envoyer le message →", bg var(--color-terracotta-dark)
+  
+  Validation:
+    - On blur: validate individual field
+    - On submit: validate all, focus first invalid field
+    - Error messages (FR):
+        Nom: "Veuillez entrer votre nom complet (min. 2 caractères)"
+        Email: "Adresse email invalide"
+        Téléphone: "Format invalide (ex: 06 12 34 56 78)"
+        Message: "Le message doit contenir au moins 10 caractères"
+        RGPD: "Vous devez accepter la politique de confidentialité"
+    - Display: red text below field, role="alert", aria-describedby links input → error
+    - Input invalid state: border-color var(--color-error)
+  
+  Submit flow:
+    - Disable button, show spinner inside button
+    - POST JSON to data-api-endpoint with { name, email, phone, services[], message, lang, timestamp }
+    - 200 → replace form with success card (✓ green check + "Message envoyé. Nous vous répondrons sous 48h.")
+    - 4xx/5xx → inline error banner at top of form, keep form data, re-enable button
+    - Network fail → "Erreur réseau. Veuillez réessayer ou nous appeler au 04 68 51 22 85."
+
+  Inputs styling: 
+    - padding 14px 16px, border-radius 8px, font-size 16px (no iOS zoom)
+    - border 1px solid #ccc, focus border var(--color-terracotta-dark)
+
+═══════════════════════════════════════════════
+SECTION 5 — ÉQUIPE (#equipe)
+═══════════════════════════════════════════════
+Background: var(--color-bg-white)
+Heading: "Notre Équipe" (centered)
+
+Layout:
+  Desktop: 2 cards side by side (grid-template-columns: 1fr 1fr, gap 2rem)
+  Mobile:  Stack (gap 2rem)
+
+Card structure:
+  - Photo (aspect-ratio 4/5, object-fit: cover, skeleton until loaded)
+  - Name (h3, font-heading, large)
+  - Title (subtitle, italic, terracotta)
+  - Bio (paragraph)
+  - Quote block (italic, terracotta left border 3px, padding-left 1rem)
+
+Card 1 — Dr Nicolas Rossi (Médecin généraliste)
+  Bio FR: "Passionné par la médecine esthétique, le Dr Nicolas Rossi accompagne ses patients
+    vers des résultats naturels et harmonieux. Formé aux dernières techniques laser et aux injections,
+    il place l'écoute et la sécurité au cœur de chaque consultation."
+  Quote FR: "Mon objectif est que chaque patient reparte en se sentant mieux dans sa peau,
+    sans que cela se remarque de façon artificielle."
+
+Card 2 — Laura Rossi (Infirmière libérale)
+  Bio FR: "Infirmière diplômée d'État, Laura Rossi assure le suivi post-soin et les soins
+    infirmiers au sein du cabinet. Sa douceur et son professionnalisme sont au service du
+    bien-être de chaque patient."
+  Quote FR: "Je suis là pour que chaque étape de votre parcours soin soit sereine et en toute confiance."
+
+═══════════════════════════════════════════════
+FOOTER
+═══════════════════════════════════════════════
+Background: var(--color-secondary), text in white 
+
+Row 1: logo (white version) LEFT, socials RIGHT (44×44px tap targets)
+  Instagram icon → "#"
+  Doctolib icon → Doctolib URL (new tab)
+
+Row 2: 3 columns desktop, 1 stacked mobile
+  Col 1 — Coordonnées (📍 📞 ✉ clickable links)
+  Col 2 — Navigation (5 anchor links, smooth-scroll)
+  Col 3 — Légal (Mentions légales, Politique de confidentialité, Plan du site)
+
+Divider (1px solid rgba(255,255,255,0.15))
+
+Bottom row (centered):
+  © 2026 Carlit Laser Medical — Tous droits réservés
+  "⚕ Ce site est à titre informatif uniquement et ne se substitue pas à une consultation médicale.
+   Conformément au Code de déontologie médicale."
+
+═══════════════════════════════════════════════
+GLOBAL FEATURES
+═══════════════════════════════════════════════
+
+MOBILE STICKY CTA BAR (mobile only, ≤767px)
+  Fixed bottom, full-width, 56px tall, z-index 90
+  Background: var(--color-bg-white) with top shadow
+  Two buttons side-by-side:
+    [📞 Appeler] (tel:) | [🗓 RDV Doctolib] (--color-rdv-blue)
+  Adds body padding-bottom: 56px on mobile to prevent content hiding.
+  Hidden when scroll-to-top button area is reached or on legal pages.
+
+SCROLL-TO-TOP BUTTON
+  Appears after window.scrollY > 600 (or past hero)
+  Fixed bottom-right: bottom 5rem (above mobile CTA bar) / 2rem desktop
+  Right 1.5rem. 48×48px circle, terracotta, ↑ icon, white
+  Fade transition 0.3s. Smooth-scroll on click.
+
+SKELETON / SHIMMER
+  @keyframes shimmer { from{background-position:-400px 0} to{background-position:400px 0} }
+  .skeleton {
+    background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+    background-size: 800px 100%;
+    animation: shimmer 1.4s infinite linear;
+  }
+  Use <img loading="lazy" decoding="async"> for all below-fold images.
+  On image load → remove .skeleton class, fade in image (opacity 0→1, 300ms).
+
+COOKIE CONSENT BANNER
+  Shown on first visit (localStorage "cookie_consent" not set)
+  Fixed bottom, z-index 200, slide up from bottom on load (after 500ms)
+  Background: var(--color-bg-white), padding 1.25rem, box-shadow top
+  Layout: text + buttons side-by-side desktop, stacked mobile
+  Text FR: "Nous utilisons Google Maps pour vous localiser. En acceptant, vous autorisez
+            le dépôt de cookies tiers par Google."
+  Buttons: 
+    [Refuser] (outlined) | [Accepter] (filled terracotta)
+    Mobile: full-width stacked, "Accepter" on top
+  Refuse → static map placeholder + localStorage flag
+  Accept → inject Google Maps iframe + localStorage flag
+
+MEDICAL DISCLAIMER STRIP
+  Above navbar, sticky-top, 32px height, var(--color-secondary) bg, white text
+  Font-size: clamp(11px, 1.5vw, 13px)
+  FR: "⚕ Ce site est informatif et ne remplace pas une consultation médicale."
+  Dismiss button (×, 32×32px tap target, right side)
+  localStorage flag "disclaimer_dismissed" persists choice
+  When dismissed, navbar moves up to top: 0
+
+SCROLL-SPY
+  IntersectionObserver, rootMargin: "-40% 0px -40% 0px", threshold: 0
+  Highlights active section's nav link with class .active
+  Updates URL hash via history.replaceState (no scroll jump)
+
+═══════════════════════════════════════════════
+TRANSLATIONS (js/translations.js)
+═══════════════════════════════════════════════
+- URL strategy: /, /fr/, /en/, /es/
+- Detection order: 1) URL prefix → 2) localStorage("lang") → 3) navigator.language → 4) "fr"
+- All translatable text uses data-i18n="key.subkey" attributes
+- For attributes: data-i18n-attr="placeholder:key,title:key2"
+- Translation object structure:
+    { fr: { nav:{...}, hero:{...}, prestations:{...}, ... }, en: {...}, es: {...} }
+- EN/ES: provide REAL translations ONLY for:
+    nav links, CTA buttons, section headings, hero quote, form labels, footer
+- Card descriptions, bios, legal text in EN/ES = "Translation coming soon"
+- On lang change: update html[lang], URL via pushState, localStorage, re-render all [data-i18n]
+- Update <meta description> and document.title per language
+
+═══════════════════════════════════════════════
+JS ARCHITECTURE (OOP, ES6 classes)
+═══════════════════════════════════════════════
+class TranslationManager { init(), setLang(code), translate(el), getCurrentLang() }
+class MobileMenu { open(), close(), toggle(), trapFocus(), handleEsc() }
+class Carousel { next(), prev(), goTo(n), autoPlay(), pause(), bindTouch() }
+class BeforeAfterSlider { constructor(el), bindDrag(), update(percent) }
+class ContactForm { validateField(field), validateAll(), submit(), showError(field,msg), showSuccess() }
+class SkeletonLoader { observe(), loadImage(img) }
+class ScrollToTop { show(), hide(), scrollTop() }
+class CookieBanner { show(), accept(), refuse(), injectMap() }
+class DisclaimerBar { dismiss() }
+class ScrollSpy { observe(), setActive(id) }
+class StickyMobileCTA { show(), hide() }
+
+All instantiated in main.js DOMContentLoaded.
+All scripts loaded with `defer`.
+
+═══════════════════════════════════════════════
+HEAD (index.html)
+═══════════════════════════════════════════════
+<title>Carlit Laser Medical — Médecine Esthétique Perpignan</title>
+<meta name="description" content="Cabinet de médecine esthétique à Perpignan. Laser CO₂, IPL Stellar M22, VirtueRF, injections acide hyaluronique. Dr Nicolas Rossi. Prenez RDV sur Doctolib.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#733803">
+<link rel="icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<link rel="manifest" href="assets/site.webmanifest">
+<link rel="canonical" href="https://carlitlasermedical.fr/">
+<link rel="alternate" hreflang="fr" href="https://carlitlasermedical.fr/fr/">
+<link rel="alternate" hreflang="en" href="https://carlitlasermedical.fr/en/">
+<link rel="alternate" hreflang="es" href="https://carlitlasermedical.fr/es/">
+<link rel="alternate" hreflang="x-default" href="https://carlitlasermedical.fr/">
+<meta property="og:title" content="Carlit Laser Medical — Médecine Esthétique Perpignan">
+<meta property="og:description" content="Cabinet de médecine esthétique à Perpignan.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/photo-accueil.png">
+<script type="application/ld+json"> [Schema.org as in original prompt] </script>
+
+═══════════════════════════════════════════════
+ACCESSIBILITY
+═══════════════════════════════════════════════
+- Skip-to-content link: visible on focus
+- All interactive elements: ≥44×44px tap target
+- All images: descriptive alt or alt=""
+- Form: label[for]+id pairing, aria-describedby for errors, aria-invalid on error
+- Carousel: aria-live="polite", arrow key support
+- Mobile menu: aria-expanded, focus trap, ESC to close
+- Color contrast verified: terracotta-dark (#733803) on cream (#EDE1D3) = 7.2:1 ✓
+- Reduced-motion media query disables animations
+
+═══════════════════════════════════════════════
+RESPONSIVE BREAKPOINTS (mobile-first)
+═══════════════════════════════════════════════
+Base styles: mobile (≤767px)
+@media (min-width: 768px) { tablet }
+@media (min-width: 1024px) { desktop }
+@media (min-width: 1280px) { large desktop }
+
+Fluid typography via clamp() throughout.
+Container max-width: 1200px, padding clamp(1rem, 4vw, 2rem).
+
+═══════════════════════════════════════════════
+PERFORMANCE
+═══════════════════════════════════════════════
+- All <script> tags: defer
+- All non-critical CSS: consider media="print" onload swap or load after
+- Lazy-load all below-fold images
+- Use loading="lazy" decoding="async" on all <img>
+- Avoid layout shift: set width/height on all images
+- Map iframe: only injected on consent (privacy + perf)
+
+═══════════════════════════════════════════════
+DELIVERABLE CHECKLIST
+═══════════════════════════════════════════════
+✓ index.html (complete, all 5 sections, valid HTML5)
+✓ 7 subpages with placeholder content + TODO comments
+✓ 5 CSS files
+✓ 4 JS files with OOP classes
+✓ All translations object scaffolded (FR complete, EN/ES partial)
+✓ Schema.org JSON-LD
+✓ Cookie banner + map consent flow
+✓ Mobile menu with focus trap + ESC
+✓ Before/after slider working with touch + mouse
+✓ Form validation (blur + submit) with French error messages
+✓ Sticky mobile CTA bar (call + Doctolib)
+✓ Disclaimer dismissible bar
+✓ All accessibility requirements met
+✓ Tested mental model: works on iPhone SE (375px) up to 4K desktop
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+A ajouter apres
+"pages/
+  diagnostique-peau.html, laser-co2.html, ipl.html,
+  radiofrequence.html, injections.html,
+  mentions-legales.html, politique-confidentialite.html
+
+═══════════════════════════════════════════════
+SUBPAGE TEMPLATE (each prestation page)
+═══════════════════════════════════════════════
+Each of the 5 prestation subpages uses this structure:
+  1. Same navbar + disclaimer + footer (DRY: keep duplicated since plain HTML)
+  2. Hero section: small banner, treatment name h1, machine badge, breadcrumb
+  3. "Présentation" section: 2-3 paragraphs (use card desc + expanded text)
+  4. "Indications" section: bullet list
+  5. "Déroulement de la séance" section: numbered steps (1-5)
+  6. "Tarifs" section: pricing table (séance unique / forfait 3 séances)
+  7. "Contre-indications" section: bullet list with ⚠ icon
+  8. CTA block: "Prendre RDV" + "Retour aux prestations"
+
+For now, use PLACEHOLDER content on each subpage:
+  - 3 paragraphs of "Lorem ipsum dolor sit amet..." per section
+  - Mark with HTML comment <!-- TODO: actual medical content -->
+
+
+═══════════════════════════════════════════════
+LEGAL PAGES (FRANCE-COMPLIANT)
+═══════════════════════════════════════════════
+Mentions légales (pages/mentions-legales.html) MUST include:
+  - Éditeur du site: Carlit Laser Medical, address, SIRET (placeholder), 
+    Directeur de publication: Dr Nicolas Rossi, N° RPPS (placeholder)
+  - Hébergeur: (placeholder — TBA)
+  - Conseil de l'Ordre: Conseil National de l'Ordre des Médecins, 4 rue Léon Jost, 75017 Paris
+  - Propriété intellectuelle clause
+  - Crédits photos (placeholder)
+
+Politique de confidentialité (pages/politique-confidentialite.html) MUST include:
+  - Données collectées (via formulaire contact)
+  - Finalité (réponse aux demandes, prise de RDV)
+  - Base légale (consentement art. 6.1.a RGPD)
+  - Durée de conservation (3 ans)
+  - Destinataires (équipe médicale uniquement)
+  - Droits RGPD (accès, rectification, suppression, opposition, portabilité)
+  - Contact DPO: carlitlasermedical@gmail.com
+  - Cookies: liste (Google Maps, localStorage technique)
+  - CNIL: droit de réclamation auprès de la CNIL
+
+Use placeholder text where info is missing, mark with <!-- TODO: complete -->
+"
+
